@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jaxrs="http://cxf.apache.org/jaxrs"
-	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jaxrs="http://cxf.apache.org/jaxrs" xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="
 http://www.springframework.org/schema/beans 
 http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
@@ -13,6 +13,7 @@ http://cxf.apache.org/schemas/jaxrs.xsd">
 
 	<context:property-placeholder />
 	<context:annotation-config />
+	<tx:annotation-driven transaction-manager="transactionManager" />
 	<bean
 		class="org.springframework.web.context.support.ServletContextPropertyPlaceholderConfigurer" />
 	<bean
@@ -22,6 +23,61 @@ http://cxf.apache.org/schemas/jaxrs.xsd">
 		id="cService">
 		<property name="customerDao" ref="cDao" />
 	</bean>
+
+	<!--Hibernate conf beans -->
+
+	<bean id="SessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="DataSource" />
+		<property name="annotatedClasses">
+			<list>
+				<value>tn.tunisiana.customer.model.Offer</value>
+				<value>tn.tunisiana.customer.model.Customer</value>
+				<value>tn.tunisiana.customer.model.Segment</value>
+			</list>
+		</property>
+
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+			</props>
+		</property>
+	</bean>
+
+
+	<!-- Data Source Declaration -->
+
+	<bean id="DataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url"
+			value="jdbc:mysql://ec2-23-21-211-172.compute-1.amazonaws.com:3306/tunisianaDb" />
+		<property name="username" value="tunisianaroot" />
+		<property name="password" value="root" />
+
+	</bean>
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+
+		<property name="sessionFactory" ref="SessionFactory" />
+
+	</bean>
+
+
+	<!-- DAO beans -->
+
+	<bean id="segmentDao" class="tn.tunisiana.customer.dao.impl.SegmentDaoImpl">
+		<property name="sessionFactory" ref="SessionFactory"></property>
+
+	</bean>
+
+
+	<!--JAxrs -->
+
+
+
+
 	<jaxrs:server id="services" address="/">
 		<jaxrs:serviceBeans>
 			<bean class="tn.tunisiana.customer.HelloWorld" />
