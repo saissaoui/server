@@ -5,11 +5,17 @@ package tn.tunisiana.customer.model;
 import static javax.persistence.GenerationType.IDENTITY;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -60,6 +66,7 @@ public class Customer implements java.io.Serializable {
 	@Transient
 	private int distance;
 	
+	private List<Offer> offres;
 	
 
 	public Customer() {
@@ -370,4 +377,18 @@ public class Customer implements java.io.Serializable {
 		this.distance = distance;
 	}
 
+
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name = "customer_offer", catalog = "tunisianaDb", joinColumns = { @JoinColumn(name = "idcustomer", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "idoffer", nullable = false, updatable = false) })
+	
+	public List<Offer> getOffres() {
+		return offres;
+	}
+
+
+	public void setOffres(List<Offer> offres) {
+		this.offres = offres;
+	}
+
+	
 }

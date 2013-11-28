@@ -5,7 +5,9 @@
 	xsi:schemaLocation="
 http://www.springframework.org/schema/beans 
 http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+http://www.springframework.org/schema/context 
+http://www.springframework.org/schema/context/spring-context-3.0.xsd
+http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
 http://cxf.apache.org/jaxrs
 http://cxf.apache.org/schemas/jaxrs.xsd">
 
@@ -13,18 +15,13 @@ http://cxf.apache.org/schemas/jaxrs.xsd">
 
 	<context:property-placeholder />
 	<context:annotation-config />
+
 	<tx:annotation-driven transaction-manager="transactionManager" />
 	<bean
 		class="org.springframework.web.context.support.ServletContextPropertyPlaceholderConfigurer" />
-	<bean
-		class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer" />
-	<bean class="tn.tunisiana.customer.dao.impl.CustomerDaoImpl" id="cDao" />
-	<bean class="tn.tunisiana.customer.services.impl.CustomerServiceImpl"
-		id="cService">
-		<property name="customerDao" ref="cDao" />
-	</bean>
 
 	<!--Hibernate conf beans -->
+
 
 	<bean id="SessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
@@ -34,6 +31,7 @@ http://cxf.apache.org/schemas/jaxrs.xsd">
 				<value>tn.tunisiana.customer.model.Offer</value>
 				<value>tn.tunisiana.customer.model.Customer</value>
 				<value>tn.tunisiana.customer.model.Segment</value>
+				<value>tn.tunisiana.customer.model.Correspondance</value>
 			</list>
 		</property>
 
@@ -67,13 +65,31 @@ http://cxf.apache.org/schemas/jaxrs.xsd">
 
 	<!-- DAO beans -->
 
-	<bean id="segmentDao" class="tn.tunisiana.customer.dao.impl.SegmentDaoImpl">
+	<bean
+		class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer" />
+	<bean class="tn.tunisiana.customer.dao.impl.CustomerDaoImpl" id="cDao" >
+	
+	</bean>
+	<bean id="segmentDao" class="tn.tunisiana.customer.dao.impl.SegmentDao">
 		<property name="sessionFactory" ref="SessionFactory"></property>
 
 	</bean>
 
+	<!-- Services beans -->
 
-	<!--JAxrs -->
+
+
+	<bean class="tn.tunisiana.customer.services.impl.CustomerServiceImpl"
+		id="cService">
+		<property name="customerDao" ref="cDao" />
+	</bean>
+	<bean id="oService"
+		class="tn.tunisiana.customer.services.impl.OfferManagerServiceImpl">
+		<property name="sDao" ref="segmentDao" />
+	</bean>
+
+
+	<!--Jaxrs -->
 
 
 
@@ -81,7 +97,7 @@ http://cxf.apache.org/schemas/jaxrs.xsd">
 	<jaxrs:server id="services" address="/">
 		<jaxrs:serviceBeans>
 			<bean class="tn.tunisiana.customer.HelloWorld" />
-			<bean class="tn.tunisiana.customer.services.impl.OfferManagerServiceImpl" />
+			<ref bean="oService" />
 			<ref bean="cService" />
 
 

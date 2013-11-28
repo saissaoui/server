@@ -1,14 +1,19 @@
 package tn.tunisiana.customer.model;
 
+import static javax.persistence.GenerationType.IDENTITY;
+
 import java.util.List;
 
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementWrapper;
-import javax.xml.bind.annotation.XmlElements;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
-@XmlRootElement(name = "segment")
+@Entity
+@Table(name = "segment", catalog = "tunisianaDb")
 public class Segment {
 
 	private int idSegment;
@@ -17,7 +22,9 @@ public class Segment {
 
 	private List<Correspondance> correspondances;
 
-	@XmlAttribute(name = "id")
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
+	@Column(name = "idsegment", unique = true, nullable = false)
 	public int getIdSegment() {
 		return idSegment;
 	}
@@ -26,7 +33,7 @@ public class Segment {
 		this.idSegment = idSegment;
 	}
 
-	@XmlAttribute
+	@Column(name = "critere")
 	public String getCritere() {
 		return critere;
 	}
@@ -34,9 +41,8 @@ public class Segment {
 	public void setCritere(String critere) {
 		this.critere = critere;
 	}
-
-	@XmlElementWrapper
-	@XmlElements(value = { @XmlElement(name = "correspondance", type = Correspondance.class) })
+	
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "segment")
 	public List<Correspondance> getCorrespondances() {
 		return correspondances;
 	}
@@ -44,5 +50,8 @@ public class Segment {
 	public void setCorrespondances(List<Correspondance> correspondances) {
 		this.correspondances = correspondances;
 	}
+
+	
+	
 
 }

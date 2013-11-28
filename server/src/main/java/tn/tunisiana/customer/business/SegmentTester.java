@@ -7,6 +7,7 @@ import java.util.List;
 
 import tn.tunisiana.customer.model.Correspondance;
 import tn.tunisiana.customer.model.Customer;
+import tn.tunisiana.customer.model.Offer;
 import tn.tunisiana.customer.model.Segment;
 import bsh.EvalError;
 import bsh.Interpreter;
@@ -15,10 +16,10 @@ public class SegmentTester {
 
 	private List<Segment> segments;
 
-	public List<Integer> defineOffers(Customer customer) {
+	public List<Offer> defineOffers(Customer customer) {
 
 		Interpreter interpreter = new Interpreter();
-		List<Integer> offers = new ArrayList<Integer>();
+		List<Offer> offers = new ArrayList<Offer>();
 
 		for (Segment segment : segments) {
 			try {
@@ -27,29 +28,31 @@ public class SegmentTester {
 				try {
 					getCritereValue = customer.getClass().getMethod(
 							"get" + segment.getCritere());
-					
-					interpreter.set("critereValue",
-							Integer.parseInt(getCritereValue.invoke(customer).toString()));
+
+					interpreter.set("critereValue", Integer
+							.parseInt(getCritereValue.invoke(customer)
+									.toString()));
 
 					String expression = "( ";
 
 					for (Correspondance corresp : segment.getCorrespondances()) {
 						for (String condition : corresp.getConditions().split(
 								"/")) {
-							expression += "(critereValue " + condition + ") && ";
+							expression += "(critereValue " + condition
+									+ ") && ";
 
-							
 						}
 						if (expression.endsWith("&& "))
-							expression = expression.substring(0, expression.length()-3);
-							expression+=")";
+							expression = expression.substring(0,
+									expression.length() - 3);
+						expression += ")";
 
 						interpreter.eval("isOk = " + expression);
 
 						boolean isOk = (Boolean) interpreter.get("isOk");
 
 						if (isOk)
-							offers.add(corresp.getIdOffre());
+							offers.add(corresp.getOffre());
 
 						expression = "( ";
 					}

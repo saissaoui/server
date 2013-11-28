@@ -19,7 +19,6 @@ public class CustomerDaoImpl implements ICustomerDao {
 
 	}
 
-	@Override
 	public List<Customer> getAll() {
 		session.getTransaction().begin();
 		Query query;
