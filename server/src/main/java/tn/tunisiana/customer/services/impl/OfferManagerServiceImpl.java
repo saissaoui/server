@@ -2,6 +2,8 @@ package tn.tunisiana.customer.services.impl;
 
 import java.util.List;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import tn.tunisiana.customer.business.SegmentTester;
 import tn.tunisiana.customer.dao.impl.SegmentDao;
 import tn.tunisiana.customer.model.Customer;
@@ -15,6 +17,7 @@ public class OfferManagerServiceImpl implements IOfferManagerService {
 	private SegmentTester segTester = new SegmentTester();
 	private SegmentDao sDao;
 
+	@Transactional
 	public List<Offer> getOffersFor(Customer customer) {
 
 		GeoCalculator gc = new GeoCalculator();

@@ -42,7 +42,7 @@ public class Segment {
 		this.critere = critere;
 	}
 	
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "segment")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "segment")
 	public List<Correspondance> getCorrespondances() {
 		return correspondances;
 	}

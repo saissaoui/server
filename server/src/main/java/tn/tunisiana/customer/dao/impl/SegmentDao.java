@@ -2,9 +2,6 @@ package tn.tunisiana.customer.dao.impl;
 
 import java.util.List;
 
-import org.hibernate.SessionFactory;
-
-import tn.tunisiana.customer.dao.ISegmentDao;
 import tn.tunisiana.customer.model.Segment;
 
 public class SegmentDao extends GenericDao<Segment> {
