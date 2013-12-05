@@ -18,7 +18,7 @@ public class Correspondance {
 	private int idCorrespondance;
 	private String conditions;
 	private Offer Offre;
-	private Segment segment;
+	
 
 	public Correspondance() {
 		super();
@@ -44,7 +44,7 @@ public class Correspondance {
 		this.conditions = conditions;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "offre_id", nullable = false)
 	public Offer getOffre() {
 		return Offre;
@@ -54,14 +54,6 @@ public class Correspondance {
 		Offre = offre;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "idsegment", nullable = false)
-	public Segment getSegment() {
-		return segment;
-	}
-
-	public void setSegment(Segment segment) {
-		this.segment = segment;
-	}
+	
 
 }

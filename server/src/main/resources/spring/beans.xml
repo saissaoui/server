@@ -23,7 +23,7 @@ http://cxf.apache.org/schemas/jaxrs.xsd">
 	<!--Hibernate conf beans -->
 
 	<!--SessionFactory -->
-	<bean id="SessionFactory"
+	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="DataSource" />
 		<property name="annotatedClasses">
@@ -58,7 +58,7 @@ http://cxf.apache.org/schemas/jaxrs.xsd">
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 
-		<property name="sessionFactory" ref="SessionFactory"  />
+		<property name="sessionFactory" ref="sessionFactory"  />
 
 	</bean>
 
@@ -71,7 +71,7 @@ http://cxf.apache.org/schemas/jaxrs.xsd">
 
 	</bean>
 	<bean id="segmentDao" class="tn.tunisiana.customer.dao.impl.SegmentDao">
-		<property name="sessionFactory" ref="SessionFactory"></property>
+		<property name="sessionFactory" ref="sessionFactory"></property>
 
 	</bean>
 

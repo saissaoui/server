@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Nouveau Client</title>
+<link href="../css/blitzer/jquery-ui-1.10.3.custom.css" rel="stylesheet">
+<link href="../css/global.css" rel="stylesheet">
+
+
+<script src="../js/jquery-1.9.1.js"></script>
+<script src="../js/jquery-ui-1.10.3.custom.js"></script>
+<script>
+	$(function() {
+		$("#includedContent").load("../header.html");
+		$("#accordion").accordion({ heightStyle: "content" });
+		$("#offersAccor").accordion({ heightStyle: "content" });
+		$("#nivscoAccomp").buttonset();
+		$("#etatradioAccomp").buttonset();
+		$("#lienParente").buttonset();
+		$("#civilite").buttonset();
+		$("#civiliteUtilisateur").buttonset();
+		$("#etatradio").buttonset();
+		$("#raisonChoix").buttonset();
+		$("#operateurRadio").buttonset();
+		$("#nivsco").buttonset();
+		$("#dateNaissance").datepicker();
+		$("#dateNaissanceUtilisateur").datepicker();
+		$("#dialogOffers").dialog({
+			autoOpen : false,
+			height : 500,
+			width : 800,
+			modal : true,
+			
+			close : function() {
+				 
+			}
+		});
+
+	});
+
+	$(document).ready(
+			function() {
+				// lorsque je soumets le formulaire
+				$('#cutomerForm').on(
+						'submit',
+						function() {
+
+							// je récupère les valeurs
+							var customer = new Object();
+							customer.dateNaissance = $('#dateNaissance').val();
+							customer.name = $('#name').val();
+							customer.age = 30;
+							var cutomerJson = JSON.stringify(customer);
+							// je vérifie une première fois pour ne pas lancer la requête HTTP
+							// si je sais que mon PHP renverra une erreur
+							// appel Ajax
+							$.ajax({
+								url : $(this).attr('action'),
+								type : $(this).attr('method'),
+								data : cutomerJson,
+								dataType : "json",
+								contentType : "json",
+
+								success : function(json) {
+									console.log(json[0].offerName);
+									$("#offersAccor").empty();
+									 $("#dialogOffers").dialog("open");
+									 $.each(json, function(i, item) {
+										
+										$("#offersAccor").append(
+												"<h3>" + item.offerName
+														+ "</h3><div >"
+														+ item.description
+														+ "</div>");
+										
+										
+																								
+									});
+										$("#offersAccor").accordion("refresh");
+									 console.log("here is");
+									 
+									
+								},
+								error : function() {
+									alert("fail :-(");
+								}
+							});
+
+							return false; // j'empêche le navigateur de soumettre lui-même le formulaire
+						});
+			});
+</script>
+<style type="text/css">
+.demoHeaders {
+	margin-top: 2em;
+}
+
+#dialog-link {
+	padding: .4em 1em .4em 20px;
+	text-decoration: none;
+	position: relative;
+}
+
+#dialog-link span.ui-icon {
+	margin: 0 5px 0 0;
+	position: absolute;
+	left: .2em;
+	top: 50%;
+	margin-top: -8px;
+}
+
+#icons {
+	margin: 0;
+	padding: 0;
+}
+
+#icons li {
+	margin: 2px;
+	position: relative;
+	padding: 4px 0;
+	cursor: pointer;
+	float: left;
+	list-style: none;
+}
+
+#icons span.ui-icon {
+	float: left;
+	margin: 0 4px;
+}
+
+.acctab {
+	height: 300px;
+}
+</style>
+</head>
+<body>
+	<div id="includedContent"></div>
+	<div id="dialogOffers">
+		<div id="offersAccor"></div>
+		
+
+		</div>
+		<div id="content" class="content">
+			<h2 class="demoHeaders">Formulaire d'informations Client</h2>
+			<form id="cutomerForm"
+				action="../rest/offer/getAll"
+				method="post">
+				<div id="accordion">
+					<h3>Informations Générales</h3>
+					<div style="height: 300px;">
+						<table>
+							<tr>
+								<td><label>Nom</label></td>
+								<td><input id="name"></td>
+							</tr>
+							<tr>
+								<td><label>Prénom</label></td>
+								<td><input id="lastname"></td>
+							</tr>
+							<tr>
+								<td><label>Date de naissance</label></td>
+								<td><input type="text" id="dateNaissance"></td>
+							</tr>
+							<tr>
+								<td><label for="nationalite">Nationalité</label></td>
+								<td><select id="country" name="nationalite">
+										<option value="en-US">US $</option>
+										<option value="de-DE">EUR €</option>
+										<option value="ja-JP">YEN ¥</option>
+								</select></td>
+							</tr>
+							<tr>
+								<td><label>Séxe</label></td>
+								<td>
+
+									<div id="civilite">
+										<input type="radio" id="homme" name="sexeradio"><label
+											for="homme">homme</label> <input type="radio" id="femme"
+											name="sexeradio" checked="checked"><label for="femme">Femme</label>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td><label>Téléphone Fixe</label></td>
+								<td><input id="phone"></td>
+							</tr>
+							<tr>
+								<td><label>Adresse éléctronique</label></td>
+								<td><input id="email"></td>
+							</tr>
+							<tr>
+								<td><label>Pièce d'identité</label></td>
+								<td><select id="idType" name="">
+										<option value="en-US">US $</option>
+										<option value="de-DE">EUR €</option>
+										<option value="ja-JP">YEN ¥</option>
+								</select></td>
+								<td><label>Numéro</label></td>
+								<td><input id="idNumber"></td>
+							</tr>
+							<tr>
+
+							</tr>
+							<tr>
+								<td><label>Adresse</label></td>
+							</tr>
+							<tr>
+								<td><label>Ville</label></td>
+								<td><input id="villeUtilisateur"></td>
+								<td><label>Code Postal</label></td>
+								<td><input id="codePostal"></td>
+								<td><label>Gouvernorat</label></td>
+								<td><select id="gouvernorat" name="gouv">
+										<option value="en-US">US $</option>
+										<option value="de-DE">EUR €</option>
+										<option value="ja-JP">YEN ¥</option>
+								</select></td>
+								<td></td>
+							</tr>
+						</table>
+
+					</div>
+					<h3>Informations Complèmentaires</h3>
+					<div>
+						<table>
+
+							<tr>
+								<td><label>Niveau scolaire</label></td>
+								<td><div id="nivsco">
+										<input type="radio" id="primaire" name="nivsco"><label
+											for="primaire">Primaire</label> <input type="radio"
+											id="secondaire" name="nivsco"><label for="secondaire">Secondaire</label>
+										<input type="radio" id="superieur" name="nivsco"><label
+											for="superieur">Superieur</label>
+
+									</div></td>
+							</tr>
+							<tr>
+								<td><label>Profession</label></td>
+								<td><select id="profession" name="profession">
+										<option value="en-US">US $</option>
+										<option value="de-DE">EUR €</option>
+										<option value="ja-JP">YEN ¥</option>
+								</select></td>
+
+							</tr>
+							<tr>
+								<td><label>Etat civil</label></td>
+								<td>
+									<div id="etatradio">
+										<input type="radio" id="celib" name="etatradio"><label
+											for="celib">célibataire</label> <input type="radio"
+											id="marie" name="etatradio"><label for="marie">Marié(e)</label>
+										<input type="radio" id="divorce" name="etatradio"><label
+											for="divorce">Divorcé(e)</label> <input type="radio"
+											id="veuf" name="etatradio"><label for="veuf">Veuf(ve)</label>
+									</div>
+								</td>
+							</tr>
+
+							<tr>
+								<td><label>Revenu</label></td>
+								<td><select id="revenu" name="revenu">
+										<option value="en-US">US $</option>
+										<option value="de-DE">EUR €</option>
+										<option value="ja-JP">YEN ¥</option>
+								</select></td>
+
+							</tr>
+
+						</table>
+					</div>
+					<h3>Informations Achat</h3>
+					<div>
+						<table>
+							<tr>
+								<td><label>Situation d'achat</label></td>
+								<td><select id="raisonAchat" name="raisonAchat">
+										<option value="en-US">US $</option>
+										<option value="de-DE">EUR €</option>
+										<option value="ja-JP">YEN ¥</option>
+								</select></td>
+							</tr>
+							<tr>
+								<td><label>Si vous n'çetes pas l'utilisateur
+										veuillez remplir ces champs</label></td>
+							</tr>
+							<tr>
+								<td><label>Lien de parenté</label></td>
+							</tr>
+							<tr>
+								<td><label>Nom</label></td>
+								<td><input id="nomUtilisateur"></td>
+							</tr>
+							<tr>
+								<td><label>Prénom</label></td>
+								<td><input id="prenomUtilisateur"></td>
+							</tr>
+							<tr>
+								<td><label>Date de naissance</label></td>
+								<td><input type="text" id="dateNaissanceUtilisateur"></td>
+							</tr>
+							<tr>
+								<td><label for="countryUtilisateur">Natinalité</label></td>
+								<td><select id="countryUtilisateur" name="nationalite">
+										<option value="en-US">US $</option>
+										<option value="de-DE">EUR €</option>
+										<option value="ja-JP">YEN ¥</option>
+								</select></td>
+							</tr>
+							<tr>
+								<td><label>Séxe</label></td>
+								<td>
+
+									<div id="civiliteUtilisateur">
+										<input type="radio" id="hommeAccomp" name="sexeradioAccomp"><label
+											for="hommeAccomp">homme</label> <input type="radio"
+											id="femmeAccomp" name="sexeradioAccomp" checked="checked"><label
+											for="femmeAccomp">Femme</label>
+									</div>
+								</td>
+							</tr>
+
+							<tr>
+								<td><label>Adresse</label></td>
+							</tr>
+							<tr>
+								<td><label>Ville</label></td>
+								<td><input id="villeUtilisateur"></td>
+								<td><label>Code Postal</label></td>
+								<td><input id="codePostalUtilisateur"></td>
+								<td><label>Gouvernorat</label></td>
+								<td><select id="gouvernoratUtilisateur" name="gouv">
+										<option value="en-US">US $</option>
+										<option value="de-DE">EUR €</option>
+										<option value="ja-JP">YEN ¥</option>
+								</select></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td><label>Niveau scolaire</label></td>
+								<td><div id="nivscoAccomp">
+										<input type="radio" id="primaireAccomp" name="nivscoAccomp"><label
+											for="primaireAccomp">Primaire</label> <input type="radio"
+											id="secondaireAccomp" name="nivscoAccomp"><label
+											for="secondaireAccomp">Secondaire</label> <input type="radio"
+											id="superieurAccomp" name="nivscoAccomp"><label
+											for="superieurAccomp">Superieur</label>
+
+									</div></td>
+							</tr>
+							<tr>
+								<td><label>Profession</label></td>
+								<td><select id="professionUtilisateur"
+									name="professionUtilisateur">
+										<option value="en-US">US $</option>
+										<option value="de-DE">EUR €</option>
+										<option value="ja-JP">YEN ¥</option>
+								</select></td>
+
+							</tr>
+							<tr>
+								<td><label>Etat civil</label></td>
+								<td>
+									<div id="etatradioAccomp">
+										<input type="radio" id="celibAccomp" name="etatradioAccomp"><label
+											for="celibAccomp">célibataire</label> <input type="radio"
+											id="marieAccomp" name="etatradioAccomp"><label
+											for="marieAccomp">Marié(e)</label> <input type="radio"
+											id="divorceAccomp" name="etatradioAccomp"><label
+											for="divorceAccomp">Divorcé(e)</label> <input type="radio"
+											id="veufAccomp" name="etatradioAccomp"><label
+											for="veufAccomp">Veuf(ve)</label>
+									</div>
+								</td>
+							</tr>
+
+							<tr>
+								<td><label>Revenu</label></td>
+								<td><select id="revenu" name="revenu">
+										<option value="en-US">US $</option>
+										<option value="de-DE">EUR €</option>
+										<option value="ja-JP">YEN ¥</option>
+								</select></td>
+
+							</tr>
+							<tr>
+						</table>
+
+
+					</div>
+					<h3>Informations Accompagnant(Si achat accompagné)</h3>
+					<div>
+						<table>
+							<tr>
+								<td><label>Lien</label></td>
+								<td>
+									<div id="lienParente">
+										<input type="radio" id="ami" name="lienRadio"><label
+											for="ami">Ami</label> <input type="radio" id="parent"
+											name="lienRadio"><label for="parent">Parent</label> <input
+											type="radio" id="vendeur" name="lienRadio"><label
+											for="vendeur">Vendeur</label>
+
+									</div>
+								</td>
+							</tr>
+
+							<tr>
+								<td><label>Opérateur téléphonique</label></td>
+								<td>
+									<div id="operateurRadio">
+										<input type="radio" id="tun" name="operateurRadio"><label
+											for="tun">Tunisiana</label> <input type="radio" id="orange"
+											name="operateurRadio"><label for="orange">Orange</label>
+										<input type="radio" id="tt" name="operateurRadio"><label
+											for="tt">Tunisie Télécom</label> <input type="radio"
+											id="ellissa" name="operateurRadio"><label
+											for="ellissa">Ellissa</label>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td><label>Raison du choix de l'opérateur</label></td>
+								<td>
+									<div id="raisonChoix">
+										<input type="radio" id="img" name="choixOpRadio"><label
+											for="img">Image</label> <input type="radio" id="prix"
+											name="choixOpRadio"><label for="prix">Prix</label> <input
+											type="radio" id="qos" name="choixOpRadio"><label
+											for="qos">Qualité de service</label> <input type="radio"
+											id="offre" name="choixOpRadio"><label for="offre">Offre</label>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td><label>Dépenses</label></td>
+								<td><select id="gouv" name="gouv">
+										<option value="en-US">US $</option>
+										<option value="de-DE">EUR €</option>
+										<option value="ja-JP">YEN ¥</option>
+								</select></td>
+							</tr>
+						</table>
+
+					</div>
+
+
+
+				</div>
+				<input type="submit" value="Valider Les informations du client">
+			</form>
+		</div>
+</body>
+</html>

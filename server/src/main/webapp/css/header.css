@@ -1,0 +1,18 @@
+body{
+		font: 62.5% "Trebuchet MS", sans-serif;
+		margin: 50px;
+	}
+	
+
+	.ui-menu {
+	 width: 500px;
+	 font-size: 30px;
+ 	 min-height: 50px; /* définit la hauteur minimale du menu (dépendante de la valeur de font-size) */
+	 }
+	 ul#menu {
+	 width: 1000px; /* définit la largeur totale du menu */
+	 }
+	 ul#menu>li {
+	 width: 200px; /* définit la largeur des items de niveau 1 */
+	 float: left; /* définit le positionnement des items de niveau 1 */
+	 }

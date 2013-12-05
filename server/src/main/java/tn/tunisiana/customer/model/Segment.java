@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -42,7 +43,8 @@ public class Segment {
 		this.critere = critere;
 	}
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "segment")
+	@OneToMany(fetch = FetchType.EAGER)
+	@JoinColumn(name="idsegment")
 	public List<Correspondance> getCorrespondances() {
 		return correspondances;
 	}

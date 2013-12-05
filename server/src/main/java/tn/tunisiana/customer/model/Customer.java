@@ -378,7 +378,7 @@ public class Customer implements java.io.Serializable {
 	}
 
 
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "customer_offer", catalog = "tunisianaDb", joinColumns = { @JoinColumn(name = "idcustomer", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "idoffer", nullable = false, updatable = false) })
 	
 	public List<Offer> getOffres() {

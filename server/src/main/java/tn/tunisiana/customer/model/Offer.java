@@ -3,14 +3,9 @@ package tn.tunisiana.customer.model;
 // default package
 // Generated Sep 25, 2013 12:39:34 PM by Hibernate Tools 4.0.0
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -25,8 +20,8 @@ public class Offer implements java.io.Serializable {
 	private int idoffer;
 	private String offerName;
 	private String description;
-	private List<Correspondance> correspondances;
-	private List<Customer> customers;
+	
+	
 
 	public Offer() {
 	}
@@ -70,23 +65,9 @@ public class Offer implements java.io.Serializable {
 	}
 
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "offre")
-	public List<Correspondance> getCorrespondances() {
-		return correspondances;
-	}
+	
 
-	public void setCorrespondances(List<Correspondance> correspondances) {
-		this.correspondances = correspondances;
-	}
 
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "offres")
-	public List<Customer> getCustomers() {
-		return customers;
-	}
-
-	public void setCustomers(List<Customer> customers) {
-		this.customers = customers;
-	}
 	
 	
 
