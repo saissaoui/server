@@ -17,7 +17,19 @@
 		});
 		$("#raisonAchat").change(function() {
 		    if(this.value === "change") {
-		        $("#tr_raisonsChang").show();
+		    	$("#tr_raisonsChang").show();
+		    	
+		    	$("#tr_autreOp").hide();
+		    }
+		    else if(this.value === "second"){
+		    	$("#tr_raisonsChang").hide();
+		    	$("#tr_autreOp").show();
+		    	
+		    }
+		    else{
+		    	
+		    	$("#tr_raisonsChang").hide();
+		    	$("#tr_autreOp").hide();
 		    }
 		});
 		$("#offersAccor").accordion({
@@ -31,6 +43,8 @@
 		$("#etatradio").buttonset();
 		$("#raisonChoix").buttonset();
 		$("#operateurRadio").buttonset();
+		$("#autreOperateurRadio").buttonset();
+		
 		$("#nivsco").buttonset();
 		$("#dateNaissance").datepicker({
 			dateFormat : "yy-mm-dd",
@@ -593,7 +607,7 @@
 									<option>International</option>
 									<option>Roaming</option>
 									<option value="change">Remplacement de ligne</option>
-									<option>Deuxième ligne</option>
+									<option value="second" >Deuxième ligne</option>
 									<option>Pour autre</option>
 							</select></td>
 						</tr>
@@ -601,13 +615,13 @@
 						<td><label>Autre opérateur mobile</label></td>
 							<td>
 								<div id="autreOperateurRadio">
-									<input type="radio" id="tun" name="autreOperateurRadio"><label
-										for="tun">Tunisiana</label> <input type="radio" id="orange"
-										name="autreOperateurRadio"><label for="orange">Orange</label>
-									<input type="radio" id="tt" name="autreOperateurRadio"><label
-										for="tt">Tunisie Télécom</label> <input type="radio"
-										id="ellissa" name="autreOperateurRadio"><label
-										for="ellissa">Ellissa</label>
+									<input type="radio" id="autretun" name="autreOperateurRadio"><label
+										for="autretun">Tunisiana</label> <input type="radio" id="autreorange"
+										name="autreOperateurRadio"><label for="autreorange">Orange</label>
+									<input type="radio" id="autrett" name="autreOperateurRadio"><label
+										for="autrett">Tunisie Télécom</label> <input type="radio"
+										id="autreellissa" name="autreOperateurRadio"><label
+										for="autreellissa">Ellissa</label>
 								</div>
 							</td>
 						

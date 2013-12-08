@@ -6,7 +6,6 @@
 		<version>2.7.7</version> </parent> -->
 	<groupId>tn.tunisiana.customer</groupId>
 	<artifactId>server</artifactId>
-	<version>1.0-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>Simple CXF JAX-RS webapp service using spring configuration</name>
 	<description>Simple CXF JAX-RS webapp service using spring configuration</description>
@@ -148,6 +147,7 @@
 
 	</dependencies>
 	<build>
+	 <finalName>${artifactId}</finalName>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -162,4 +162,5 @@
 
 		</plugins>
 	</build>
+	<version>1</version>
 </project>
