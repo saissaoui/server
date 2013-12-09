@@ -5,185 +5,14 @@
 <title>Nouveau Client</title>
 <link href="../css/blitzer/jquery-ui-1.10.3.custom.css" rel="stylesheet">
 <link href="../css/global.css" rel="stylesheet">
-
+<link href="../css/add_client.css" rel="stylesheet">
 
 <script src="../js/jquery-1.9.1.js"></script>
 <script src="../js/jquery-ui-1.10.3.custom.js"></script>
-<script>
-	$(function() {
-		$("#includedContent").load("../header.html");
-		$("#accordion").accordion({
-			heightStyle : "content"
-		});
-		$("#raisonAchat").change(function() {
-		    if(this.value === "change") {
-		    	$("#tr_raisonsChang").show();
-		    	
-		    	$("#tr_autreOp").hide();
-		    }
-		    else if(this.value === "second"){
-		    	$("#tr_raisonsChang").hide();
-		    	$("#tr_autreOp").show();
-		    	
-		    }
-		    else{
-		    	
-		    	$("#tr_raisonsChang").hide();
-		    	$("#tr_autreOp").hide();
-		    }
-		});
-		$("#offersAccor").accordion({
-			heightStyle : "content"
-		});
-		$("#nivscoAccomp").buttonset();
-		$("#etatradioAccomp").buttonset();
-		$("#lienParente").buttonset();
-		$("#civilite").buttonset();
-		$("#civiliteUtilisateur").buttonset();
-		$("#etatradio").buttonset();
-		$("#raisonChoix").buttonset();
-		$("#operateurRadio").buttonset();
-		$("#autreOperateurRadio").buttonset();
-		
-		$("#nivsco").buttonset();
-		$("#dateNaissance").datepicker({
-			dateFormat : "yy-mm-dd",
-			yearRange : "1900:2010",
-			changeMonth : true,
-			changeYear : true
-		});
-		$("#dateNaissanceUtilisateur").datepicker({
-			dateFormat : "yy-mm-dd",
-			yearRange : "1900:2010",
-			changeMonth : true,
-			changeYear : true
-		});
-		$("#dialogOffers").dialog({
-			autoOpen : false,
-			height : 500,
-			width : 800,
-			modal : true,
-
-			close : function() {
-
-			}
-		});
-
-	});
-
-	$(document).ready(
-
-			function() {
-				// lorsque je soumets le formulaire
-				$('#cutomerForm').on(
-						'submit',
-						function() {
-
-							// je récupère les valeurs
-							var customer = new Object();
-							customer.dateNaissance = $('#dateNaissance').val();
-							customer.name = $('#name').val();
-							var birthDate = $('#dateNaissance').datepicker(
-									"getDate");
-
-							var day = birthDate.getDay();
-							var month = birthDate.getMonth();
-							var year = birthDate.getYear();
-
-							var now = new Date();
-							var nowMonth = now.getMonth() + 1;
-							var nowYear = now.getYear();
-							var result = nowYear - year;
-
-							if (month > nowMonth) {
-								result--;
-							} else if (month == nowMonth) {
-								var nowDay = now.getDate();
-
-								if (day > nowDay) {
-									result--;
-								}
-							}
-							customer.age = result;
-							alert(customer.age);
-							var cutomerJson = JSON.stringify(customer);
-							// je vérifie une première fois pour ne pas lancer la requête HTTP
-							// si je sais que mon PHP renverra une erreur
-							// appel Ajax
-							$.ajax({
-								url : $(this).attr('action'),
-								type : $(this).attr('method'),
-								data : cutomerJson,
-								dataType : "json",
-								contentType : "json",
-
-								success : function(json) {
-									console.log(json[0].offerName);
-									$("#offersAccor").empty();
-									$("#dialogOffers").dialog("open");
-									$.each(json, function(i, item) {
-
-										$("#offersAccor").append(
-												"<h3>" + item.offerName
-														+ "</h3><div >"
-														+ item.description
-														+ "</div>");
-
-									});
-									$("#offersAccor").accordion("refresh");
-									console.log("here is");
-
-								},
-								error : function() {
-									alert("fail :-(");
-								}
-							});
-
-							return false; // j'empêche le navigateur de soumettre lui-même le formulaire
-						});
-			});
+<script src="../js/add_client.js">
+	
 </script>
 <style type="text/css">
-.demoHeaders {
-	margin-top: 2em;
-}
-
-#dialog-link {
-	padding: .4em 1em .4em 20px;
-	text-decoration: none;
-	position: relative;
-}
-
-#dialog-link span.ui-icon {
-	margin: 0 5px 0 0;
-	position: absolute;
-	left: .2em;
-	top: 50%;
-	margin-top: -8px;
-}
-
-#icons {
-	margin: 0;
-	padding: 0;
-}
-
-#icons li {
-	margin: 2px;
-	position: relative;
-	padding: 4px 0;
-	cursor: pointer;
-	float: left;
-	list-style: none;
-}
-
-#icons span.ui-icon {
-	float: left;
-	margin: 0 4px;
-}
-
-.acctab {
-	height: 300px;
-}
 </style>
 </head>
 <body>
@@ -201,19 +30,19 @@
 				<div style="height: 300px;">
 					<table>
 						<tr>
-							<td><label>Nom</label></td>
+							<td><label for="name">Nom</label></td>
 							<td><input id="name"></td>
 						</tr>
 						<tr>
-							<td><label>Prénom</label></td>
+							<td><label for="lastname">Prénom</label></td>
 							<td><input id="lastname"></td>
 						</tr>
 						<tr>
-							<td><label>Date de naissance</label></td>
+							<td><label for="dateNaissance">Date de naissance</label></td>
 							<td><input type="text" id="dateNaissance"></td>
 						</tr>
 						<tr>
-							<td><label for="nationalite">Nationalité</label></td>
+							<td><label for="country">Nationalité</label></td>
 							<td><select id="country" name="nationalite">
 									<option value="France">France</option>
 									<option value="Afghanistan">Afghanistan</option>
@@ -457,7 +286,7 @@
 							</select></td>
 						</tr>
 						<tr>
-							<td><label>Séxe</label></td>
+							<td><label for="civilite">Séxe</label></td>
 							<td>
 
 								<div id="civilite">
@@ -468,31 +297,32 @@
 							</td>
 						</tr>
 						<tr>
-							<td><label>Téléphone Fixe</label></td>
+							<td><label for="phone">Téléphone Fixe</label></td>
 							<td><input id="phone"></td>
 						</tr>
 						<tr>
-							<td><label>Adresse éléctronique</label></td>
+							<td><label for="email">Adresse éléctronique</label></td>
 							<td><input id="email"></td>
 						</tr>
 						<tr>
-							<td><label>Pièce d'identité</label></td>
+							<td><label for="idType">Pièce d'identité</label></td>
 							<td><select id="idType" name="">
-									<option>Pièce d'identité Nationale</option>
-									<option>Passeport</option>
+									<option value="cin">Carte d'identité Nationale</option>
+									<option value="pass">Passeport</option>
 
 							</select></td>
-							<td><label>Numéro</label></td>
+
+							<td><label for="idNumber" id="label_idnumber">Numéro</label></td>
 							<td><input id="idNumber"></td>
 						</tr>
 						<tr>
 
 						</tr>
 						<tr>
-							<td><label>Adresse</label></td>
+							<td><label for="" >Adresse</label></td>
 						</tr>
 						<tr>
-							<td><label>Ville</label></td>
+							<td><label for="villeUtilisateur" >Ville</label></td>
 							<td><input id="villeUtilisateur"></td>
 							<td><label>Code Postal</label></td>
 							<td><input id="codePostal"></td>
@@ -558,8 +388,6 @@
 									<option>Retraité</option>
 									<option>Sans emploi</option>
 
-									<option value="ja-JP">YEN ¥</option>
-									<option value="en-US">US $</option>
 							</select></td>
 
 						</tr>
@@ -598,7 +426,7 @@
 				<div>
 					<table>
 						<tr>
-							<td><label>Situation d'achat</label></td>
+							<td><label>Raison d'achat</label></td>
 							<td><select id="raisonAchat" name="raisonAchat">
 									<option value="en-US">Usage personnel</option>
 									<option value="de-DE">Usage professionnel</option>
@@ -607,38 +435,67 @@
 									<option>International</option>
 									<option>Roaming</option>
 									<option value="change">Remplacement de ligne</option>
-									<option value="second" >Deuxième ligne</option>
+									<option value="second">Deuxième ligne</option>
 									<option>Pour autre</option>
 							</select></td>
 						</tr>
 						<tr id="tr_autreOp" hidden="true">
-						<td><label>Autre opérateur mobile</label></td>
+							<td><label>Autre opérateur mobile</label></td>
 							<td>
 								<div id="autreOperateurRadio">
 									<input type="radio" id="autretun" name="autreOperateurRadio"><label
-										for="autretun">Tunisiana</label> <input type="radio" id="autreorange"
-										name="autreOperateurRadio"><label for="autreorange">Orange</label>
-									<input type="radio" id="autrett" name="autreOperateurRadio"><label
+										for="autretun">Tunisiana</label> <input type="radio"
+										id="autreorange" name="autreOperateurRadio"><label
+										for="autreorange">Orange</label> <input type="radio"
+										id="autrett" name="autreOperateurRadio"><label
 										for="autrett">Tunisie Télécom</label> <input type="radio"
 										id="autreellissa" name="autreOperateurRadio"><label
 										for="autreellissa">Ellissa</label>
-								</div>
+								</div> <br> <label>Quel type de ligne vous utilisez</label> <textarea
+									id="line_type"></textarea>
+
 							</td>
-						
-						
+
+
 						</tr>
 						<tr id="tr_raisonsChang" hidden="true">
-						
-						<td><label>Raisons de changement</label></td>
-							<td><input id="raisonChangement"></td>
+
+							<td><label>Raisons de changement</label></td>
+							<td><textarea id="raisonChangement"></textarea></td>
 						</tr>
 						<tr>
-							<td><label>Si vous n'çetes pas l'utilisateur
-									veuillez remplir ces champs</label></td>
+							<td><label>Situation d'achat</label></td>
+
+							<td>
+								<div id="situation_achat">
+									<input type="radio" id="presse" name="situation_achat"><label
+										for="presse">Quand vous êtes pressé</label> <input
+										type="radio" id="pas_presse" name="situation_achat"><label
+										for="pas_presse">Quand vous n’êtes pas pressé</label> <input
+										type="radio" id="pour_soi" name="situation_achat"><label
+										for="pour_soi">Achat pour soi</label> <input type="radio"
+										id="pour_offrir" name="situation_achat" value="pour_offrir"><label
+										for="pour_offrir">Achat pour offrir</label>
+
+								</div>
+							</td>
+
+						</tr>
+					</table>
+					<table id="infos_autre_utilisateur" hidden="true">
+						<tr>
+							<td><label>Si vous n'etes pas l'utilisateur veuillez
+									remplir ces champs</label></td>
 						</tr>
 						<tr>
 							<td><label>Lien de parenté</label></td>
+							<td><select id="lien_parente" name="lien_parente">
+									<option>Fils/Fille</option>
+									<option>Epoux/Epouse</option>
+									<option>Autre</option>
+							</select></td>
 						</tr>
+
 						<tr>
 							<td><label>Nom</label></td>
 							<td><input id="nomUtilisateur"></td>
@@ -1063,7 +920,7 @@
 									<option>25-50</option>
 									<option>50-100</option>
 									<option>plus de 100</option>
-									
+
 							</select></td>
 						</tr>
 					</table>
