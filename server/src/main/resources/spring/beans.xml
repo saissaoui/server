@@ -32,6 +32,7 @@ http://cxf.apache.org/schemas/jaxrs.xsd">
 				<value>tn.tunisiana.customer.model.Customer</value>
 				<value>tn.tunisiana.customer.model.Segment</value>
 				<value>tn.tunisiana.customer.model.Correspondance</value>
+				<value>tn.tunisiana.customer.model.Condition</value>
 			</list>
 		</property>
 

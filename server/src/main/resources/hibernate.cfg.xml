@@ -17,5 +17,6 @@
 		<mapping class="tn.tunisiana.customer.model.Customer" />
 		<mapping class="tn.tunisiana.customer.model.Correspondance" />
 		<mapping class="tn.tunisiana.customer.model.Segment" />
+		<mapping class="tn.tunisiana.customer.model.Condition" />
 	</session-factory>
 </hibernate-configuration>

@@ -5,6 +5,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
+import tn.tunisiana.customer.model.Condition;
 import tn.tunisiana.customer.model.Correspondance;
 import tn.tunisiana.customer.model.Customer;
 import tn.tunisiana.customer.model.Offer;
@@ -22,24 +23,25 @@ public class SegmentTester {
 		List<Offer> offers = new ArrayList<Offer>();
 
 		for (Segment segment : segments) {
+
 			try {
 
-				Method getCritereValue;
 				try {
-					getCritereValue = customer.getClass().getMethod(
-							"get" + segment.getCritere());
-
-					interpreter.set("critereValue", Integer
-							.parseInt(getCritereValue.invoke(customer)
-									.toString()));
-
-					String expression = "( ";
 
 					for (Correspondance corresp : segment.getCorrespondances()) {
-						for (String condition : corresp.getConditions().split(
-								"/")) {
-							expression += "(critereValue " + condition
-									+ ") && ";
+						String expression = "( ";
+						for (Condition condition : corresp.getConditions()) {
+
+							Method getCritereValue;
+							expression += "(critereValue "
+									+ condition.getValeurs() + ") && ";
+							getCritereValue = customer.getClass().getMethod(
+									"get" + condition.getCritere());
+
+							interpreter.set(
+									"critereValue",
+									Integer.parseInt(getCritereValue.invoke(
+											customer).toString()));
 
 						}
 						if (expression.endsWith("&& "))

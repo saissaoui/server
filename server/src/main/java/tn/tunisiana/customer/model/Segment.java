@@ -19,7 +19,7 @@ public class Segment {
 
 	private int idSegment;
 
-	private String critere;
+	private String criteres;
 
 	private List<Correspondance> correspondances;
 
@@ -34,13 +34,13 @@ public class Segment {
 		this.idSegment = idSegment;
 	}
 
-	@Column(name = "critere")
-	public String getCritere() {
-		return critere;
+	@Column(name = "criteres")
+	public String getCriteres() {
+		return criteres;
 	}
 
-	public void setCritere(String critere) {
-		this.critere = critere;
+	public void setCriteres(String criteres) {
+		this.criteres = criteres;
 	}
 	
 	@OneToMany(fetch = FetchType.EAGER)

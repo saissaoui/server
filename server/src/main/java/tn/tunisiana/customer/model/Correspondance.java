@@ -2,6 +2,8 @@ package tn.tunisiana.customer.model;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -9,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -16,7 +19,7 @@ import javax.persistence.Table;
 public class Correspondance {
 
 	private int idCorrespondance;
-	private String conditions;
+	private List<Condition> conditions;
 	private Offer Offre;
 	
 
@@ -35,12 +38,13 @@ public class Correspondance {
 		this.idCorrespondance = idCorrespondance;
 	}
 
-	@Column(name = "conditions")
-	public String getConditions() {
+	@OneToMany(fetch = FetchType.EAGER)
+	@JoinColumn(name="correspondance_id")
+	public List<Condition> getConditions() {
 		return conditions;
 	}
 
-	public void setConditions(String conditions) {
+	public void setConditions(List<Condition> conditions) {
 		this.conditions = conditions;
 	}
 
