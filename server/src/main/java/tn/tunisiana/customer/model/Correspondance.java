@@ -38,7 +38,7 @@ public class Correspondance {
 		this.idCorrespondance = idCorrespondance;
 	}
 
-	@OneToMany(fetch = FetchType.EAGER)
+	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name="correspondance_id")
 	public List<Condition> getConditions() {
 		return conditions;

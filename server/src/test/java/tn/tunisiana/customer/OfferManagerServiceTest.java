@@ -33,8 +33,12 @@ public class OfferManagerServiceTest {
 	public void test() {
 	Customer customer= new Customer();
 	customer.setIdcustomer(15);
-	customer.setAge(30);
-	customer.setRaisonAchat(4);
+	customer.setRaisonChoix("prix");
+	customer.setRaisonAchat(1);
+	customer.setGouvernorat("Tunis");
+	customer.setAchatAccompagne(true);
+	customer.setAccompagnant("ami");
+	
 	List<Offer> offers = service.getOffersFor(customer);
 	assertNotNull(offers);
 	}
