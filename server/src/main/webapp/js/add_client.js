@@ -12,7 +12,7 @@ $(function() {
 			$("#tr_raisonsChang").show();
 
 			$("#tr_autreOp").hide();
-		} else if (this.value ==="8") {
+		} else if (this.value === "8") {
 			$("#tr_raisonsChang").hide();
 			$("#tr_autreOp").show();
 
@@ -23,27 +23,22 @@ $(function() {
 		}
 	});
 
-	$("#idType").change(function() {
-		if (this.value === "cin") {
-			$("#label_idnumber").show();
-
-			$("#idNumber").show();
-		} else if (this.value === "pass") {
-			$("#label_idnumber").hide();
-
-			$("#idNumber").hide();
-		}
-
-	});
-
 	$("#offersAccor").accordion({
 		heightStyle : "content"
+	});
+	$("#country").change(function() {
+		if (this.value === "Tunisie") {
+			$('#pass').hide();
+		}
+
+		else
+			$('#pass').show();
+
 	});
 	$("#nivscoAccomp").buttonset();
 	$("#situation_achat").buttonset();
 	$("#situation_achat").change(function() {
-		
-		
+
 		if ($("#pour_offrir").is(':checked')) {
 			$("#infos_autre_utilisateur").show();
 
@@ -53,7 +48,18 @@ $(function() {
 		}
 	});
 	$("#etatradioAccomp").buttonset();
-	$("#lienParente").buttonset();
+	$("#lien_accompagnant").buttonset();
+	$("#lien_accompagnant").change(function() {
+
+		if ($("#non_acccomp").is(':checked')) {
+			$("#achatAccompagne").val("false");
+
+		} else {
+			$("#achatAccompagne").val("true");
+
+		}
+	
+	});
 	$("#civilite").buttonset();
 	$("#civiliteUtilisateur").buttonset();
 	$("#etatradio").buttonset();
@@ -63,7 +69,7 @@ $(function() {
 
 	$("#nivsco").buttonset();
 	$("#dateNaissance").datepicker({
-		dateFormat : "yy-mm-dd",
+		dateFormat : "dd-mm-yy",
 		yearRange : "1900:2010",
 		changeMonth : true,
 		changeYear : true
@@ -87,101 +93,204 @@ $(function() {
 
 });
 
-$(document).ready(
+$(document)
+		.ready(
 
-		function() {
-			// lorsque je soumets le formulaire
-			$('#cutomerForm').on(
-					'submit',
-					function() {
-						var valid = true;
-						
-						if( jQuery.trim($("#name").val()).length==0 ) {
-							valid = false;
-							$("label[for='name']").css({color: "red"});
-							}
-						else{
-							$("label[for='name']").css({color: "green"});
-						}
-							if ( jQuery.trim($("#dateNaissance").val()).length==0 ) {
-								valid = false;
-								$("label[for='dateNaissance']").css({color: "red"});
-							}
-							else
-								$("label[for='dateNaissance']").css({color: "green"});
-							
-							
-							if(!valid)
-								return valid;
-						
-						// je récupère les valeurs
-						var customer = new Object();
-						customer.dateNaissance = $('#dateNaissance').val();
-						customer.name = $('#name').val();
-						var birthDate = $('#dateNaissance').datepicker(
-								"getDate");
+				function() {
+					// lorsque je soumets le formulaire
+					$('#cutomerForm')
+							.on(
+									'submit',
+									function() {
+										var valid = true;
 
-						var day = birthDate.getDay();
-						var month = birthDate.getMonth();
-						var year = birthDate.getYear();
+										if (jQuery.trim($("#name").val()).length == 0) {
+											valid = false;
+											$("label[for='name']").css({
+												color : "red"
+											});
+										} else {
+											$("label[for='name']").css({
+												color : "green"
+											});
+										}
+										if (jQuery.trim($("#dateNaissance")
+												.val()).length == 0) {
+											valid = false;
+											$("label[for='dateNaissance']")
+													.css({
+														color : "red"
+													});
+										} else
+											$("label[for='dateNaissance']")
+													.css({
+														color : "green"
+													});
+										
+										if(!($('#phone').val().match(/^7\d{7}/))){
+											valid = false;
+											$("label[for='phone']").css({
+												color : "red"
+											});
+											
+											$('#phone_error').show();
+										} else {
+											$("label[for='phone']").css({
+												color : "green"
+											});
 
-						var now = new Date();
-						var nowMonth = now.getMonth() + 1;
-						var nowYear = now.getYear();
-						var result = nowYear - year;
+											$('#phone_error').hide();
+										}
+										
+										
 
-						if (month > nowMonth) {
-							result--;
-						} else if (month == nowMonth) {
-							var nowDay = now.getDate();
+										if (jQuery
+												.trim($('input[name=raisonChoix]:radio:checked').val()).length == 0) {
+											valid = false;
+											$("label[for='raisonChoix']").css({
+												color : "red"
+											});
+										} else {
+											$("label[for='raisonChoix']").css({
+												color : "green"
+											});
+										}
+										if (jQuery
+												.trim($("#raisonAchat").val()).length == 0) {
+											valid = false;
+											$("label[for='raisonAchat']").css({
+												color : "red"
+											});
+										} else {
+											$("label[for='raisonAchat']").css({
+												color : "green"
+											});
+										}
+										if (jQuery
+												.trim($("#gouvernorat").val()).length == 0) {
+											valid = false;
+											$("label[for='gouvernorat']").css({
+												color : "red"
+											});
+										} else {
+											$("label[for='gouvernorat']").css({
+												color : "green"
+											});
+										}
+										if ($("#raisonAchat").val() == 8) {
+											if (jQuery
+													.trim($('input[name=autreOperateur]:radio:checked')
+															.val()).length == 0) {
+												valid = false;
+												$(
+														"label[for='autreOperateurRadio']")
+														.css({
+															color : "red"
+														});
+											} else {
+												$(
+														"label[for='autreOperateurRadio']")
+														.css({
+															color : "green"
+														});
+											}
+										}
+										
+										if (!valid){
+											$("#error").show();
+											return valid;
+										}
+										else
+											$("#error").hide();
+										// je récupère les valeurs
+										var customer = new Object();
+										customer.dateNaissance = $(
+												'#dateNaissance').val();
+										customer.name = $('#name').val();
+										var birthDate = $('#dateNaissance')
+												.datepicker("getDate");
 
-							if (day > nowDay) {
-								result--;
-							}
-						}
-						customer.age = result;
-						
-						//var cutomerJson = JSON.stringify(customer);
-						
-						var frm = $( this ).serializeArray();
-						var customerJson = '{';
-						console.log(frm);
-						$.each( frm, function( key, value ) {
-							 customerJson +=' "'+value.name+'" : "'+value.value+'" , ';
-							});
-						customerJson=customerJson.substring(0, customerJson.length-2)+'}';
-						
-						
-						$.ajax({
-							url : $(this).attr('action'),
-							type : $(this).attr('method'),
-							data : customerJson,
-							dataType : "json",
-							contentType : "json",
+										var day = birthDate.getDay();
+										var month = birthDate.getMonth();
+										var year = birthDate.getYear();
 
-							success : function(json) {
-								
-								$("#offersAccor").empty();
-								$("#dialogOffers").dialog("open");
-								$.each(json, function(i, item) {
+										var now = new Date();
+										var nowMonth = now.getMonth() + 1;
+										var nowYear = now.getYear();
+										var result = nowYear - year;
 
-									$("#offersAccor").append(
-											"<h3>" + item.offerName
-													+ "</h3><div >"
-													+ item.description
-													+ "</div>");
+										if (month > nowMonth) {
+											result--;
+										} else if (month == nowMonth) {
+											var nowDay = now.getDate();
 
-								});
-								$("#offersAccor").accordion("refresh");
-								
+											if (day > nowDay) {
+												result--;
+											}
+										}
+										customer.age = result;
 
-							},
-							error : function() {
-								alert("fail :-(");
-							}
-						});
+										// var cutomerJson =
+										// JSON.stringify(customer);
 
-						return false; // j'empêche le navigateur de soumettre
-						// lui-même le formulaire
-					});
-		});
+										var frm = $(this).serializeArray();
+										var customerJson = '{';
+										
+										$.each(frm, function(key, value) {
+											customerJson += ' "' + value.name
+													+ '" : "' + value.value
+													+ '" , ';
+										});
+										customerJson = customerJson.substring(
+												0, customerJson.length - 2)
+												+ '}';
+
+										$
+												.ajax({
+													url : $(this)
+															.attr('action'),
+													type : $(this).attr(
+															'method'),
+													data : customerJson,
+													dataType : "json",
+													contentType : "json",
+
+													success : function(json) {
+
+														$("#offersAccor")
+																.empty();
+														$("#dialogOffers")
+																.dialog("open");
+														$
+																.each(
+																		json,
+																		function(
+																				i,
+																				item) {
+
+																			$(
+																					"#offersAccor")
+																					.append(
+																							"<h3>"
+																									+ item.offerName
+																									+ "</h3><div >"
+																									+ item.description
+																									+ "</div>");
+
+																		});
+														$("#offersAccor")
+																.accordion(
+																		"refresh");
+
+													},
+													error : function() {
+														alert("fail :-(");
+													}
+												});
+
+										return false; // j'empêche le
+										// navigateur de
+										// soumettre
+										// lui-même le formulaire
+									});
+				});

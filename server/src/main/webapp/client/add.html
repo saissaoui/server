@@ -23,14 +23,15 @@
 
 	</div>
 	<div id="content" class="content">
-		<h2 class="demoHeaders">Formulaire d'informations Client</h2>
+		<h2 class="demoHeaders">Formulaire d'informations Client(Les champs marquées par une * sont obligatoires à saisir)</h2>
+		<h3 id="error" style="color: red" hidden="true">Il existe des erreurs dans les champs marqués en rouge</h3>
 		<form id="cutomerForm" action="../rest/offer/getAll" method="post">
 			<div id="accordion">
 				<h3>Informations Générales</h3>
 				<div style="height: 300px;">
 					<table>
 						<tr>
-							<td><label for="name">Nom</label></td>
+							<td><label for="name">Nom*</label></td>
 							<td><input id="name"></td>
 						</tr>
 						<tr>
@@ -38,11 +39,11 @@
 							<td><input id="lastname"></td>
 						</tr>
 						<tr>
-							<td><label for="dateNaissance">Date de naissance</label></td>
+							<td><label for="dateNaissance">Date de naissance*</label></td>
 							<td><input type="text" id="dateNaissance"></td>
 						</tr>
 						<tr>
-							<td><label for="country">Nationalité</label></td>
+							<td><label for="country">Nationalité*</label></td>
 							<td><select id="country" name="country">
 									<option value="France">France</option>
 									<option value="Afghanistan">Afghanistan</option>
@@ -292,13 +293,15 @@
 								<div id="civilite">
 									<input type="radio" id="homme" value="homme" name="civilite"><label
 										for="homme">homme</label> <input type="radio" id="femme"
-										name="civilite" value="femme" checked="checked"><label for="femme">Femme</label>
+										name="civilite" value="femme" checked="checked"><label
+										for="femme">Femme</label>
 								</div>
 							</td>
 						</tr>
 						<tr>
 							<td><label for="phone">Téléphone Fixe</label></td>
 							<td><input name="phone" id="phone"></td>
+							<td><label id="phone_error" style="color: red" hidden="true">Le numéro doit contenir 8 chiffres et commencer par 7</label></td>
 						</tr>
 						<tr>
 							<td><label for="email">Adresse éléctronique</label></td>
@@ -307,13 +310,16 @@
 						<tr>
 							<td><label for="idType">Pièce d'identité</label></td>
 							<td><select id="idType" name="idType">
-									<option value="cin">Carte d'identité Nationale</option>
-									<option value="pass">Passeport</option>
+									<option value="" selected="selected">Choisissez un
+										type de pièce d'identité</option>
+									<option id="cin" value="cin">Carte d'identité
+										Nationale</option>
+									<option id="pass" value="pass" hidden="true">Passeport</option>
 
 							</select></td>
 
 							<td><label for="idNumber" id="label_idnumber">Numéro</label></td>
-							<td><input name ="idNumber"id="idNumber"></td>
+							<td><input name="idNumber" id="idNumber"></td>
 						</tr>
 						<tr>
 
@@ -322,12 +328,14 @@
 							<td><label>Adresse</label></td>
 						</tr>
 						<tr>
-							<td><label for="villeUtilisateur" >Ville</label></td>
+							<td><label for="villeUtilisateur">Ville</label></td>
 							<td><input name="villeUtilisateur" id="villeUtilisateur"></td>
 							<td><label>Code Postal</label></td>
 							<td><input name="codePostal" id="codePostal"></td>
-							<td><label>Gouvernorat</label></td>
-							<td><select  id="gouvernorat" name="gouvernorat">
+							<td><label for="gouvernorat">Gouvernorat*</label></td>
+							<td><select id="gouvernorat" name="gouvernorat">
+									<option selected="selected" value="">Choisissez un
+										gouvernorat</option>
 									<option>Ariana</option>
 									<option>Béja</option>
 									<option>Ben Arous</option>
@@ -365,10 +373,11 @@
 						<tr>
 							<td><label>Niveau scolaire</label></td>
 							<td><div id="nivsco">
-									<input type="radio" id="primaire" name="nivsco"><label
+									<input type="radio" id="primaire" name="niveauScolaire"><label
 										for="primaire">Primaire</label> <input type="radio"
-										id="secondaire" name="nivsco"><label for="secondaire">Secondaire</label>
-									<input type="radio" id="superieur" name="nivsco"><label
+										id="secondaire" name="niveauScolaire"><label
+										for="secondaire">Secondaire</label> <input type="radio"
+										id="superieur" name="niveauScolaire"><label
 										for="superieur">Superieur</label>
 
 								</div></td>
@@ -376,6 +385,8 @@
 						<tr>
 							<td><label>Profession</label></td>
 							<td><select id="profession" name="profession">
+									<option selected="selected" value="">Choisissez une
+										profession</option>
 									<option>Salarié</option>
 									<option>Cadre Moyen</option>
 									<option>Cadre Supérieur</option>
@@ -395,19 +406,21 @@
 							<td><label>Etat civil</label></td>
 							<td>
 								<div id="etatradio">
-									<input type="radio" id="celib" name="etatradio"><label
+									<input type="radio" id="celib" name="etatCivil"><label
 										for="celib">célibataire</label> <input type="radio" id="marie"
-										name="etatradio"><label for="marie">Marié(e)</label> <input
-										type="radio" id="divorce" name="etatradio"><label
+										name="etatCivil"><label for="marie">Marié(e)</label> <input
+										type="radio" id="divorce" name="etatCivil"><label
 										for="divorce">Divorcé(e)</label> <input type="radio" id="veuf"
-										name="etatradio"><label for="veuf">Veuf(ve)</label>
+										name="etatCivil"><label for="veuf">Veuf(ve)</label>
 								</div>
 							</td>
 						</tr>
 
 						<tr>
 							<td><label>Revenu</label></td>
-							<td><select  >
+							<td><select>
+									<option selected="selected" value="">Choisissez une
+										plage de revenu</option>
 									<option>moins de 300</option>
 									<option>300-600</option>
 									<option>600-900</option>
@@ -426,8 +439,10 @@
 				<div>
 					<table>
 						<tr>
-							<td><label>Raison d'achat</label></td>
+							<td><label for="raisonAchat">Raison d'achat*</label></td>
 							<td><select id="raisonAchat" name="raisonAchat">
+									<option selected="selected" value="">Choisissez une
+										raison d'achat</option>
 									<option value="1">Usage personnel</option>
 									<option value="2">Usage professionnel</option>
 									<option value="3">Pour autre</option>
@@ -440,16 +455,16 @@
 							</select></td>
 						</tr>
 						<tr id="tr_autreOp" hidden="true">
-							<td><label>Autre opérateur mobile</label></td>
+							<td><label for="autreOperateurRadio">Autre opérateur mobile*</label></td>
 							<td>
 								<div id="autreOperateurRadio">
-									<input type="radio" id="autretun" name="autreOperateur"><label
+									<input value="tun" type="radio" id="autretun" name="autreOperateur"><label
 										for="autretun">Tunisiana</label> <input type="radio"
-										id="autreorange" name="autreOperateur"><label
+										value="org" id="autreorange" name="autreOperateur"><label
 										for="autreorange">Orange</label> <input type="radio"
-										id="autrett" name="autreOperateur"><label
+										value="tt" id="autrett" name="autreOperateur"><label
 										for="autrett">Tunisie Télécom</label> <input type="radio"
-										id="autreellissa" name="autreOperateur"><label
+										value="els" id="autreellissa" name="autreOperateur"><label
 										for="autreellissa">Ellissa</label>
 								</div> <br> <label>Quel type de ligne vous utilisez</label> <textarea
 									id="line_type"></textarea>
@@ -468,13 +483,13 @@
 
 							<td>
 								<div id="situation_achat">
-									<input type="radio" id="presse" name="situation_achat"><label
+									<input type="radio" id="presse" name="situationAchat"><label
 										for="presse">Quand vous êtes pressé</label> <input
-										type="radio" id="pas_presse" name="situation_achat"><label
+										type="radio" id="pas_presse" name="situationAchat"><label
 										for="pas_presse">Quand vous n’êtes pas pressé</label> <input
-										type="radio" id="pour_soi" name="situation_achat"><label
+										type="radio" id="pour_soi" name="situationAchat"><label
 										for="pour_soi">Achat pour soi</label> <input type="radio"
-										id="pour_offrir" name="situation_achat" value="pour_offrir"><label
+										id="pour_offrir" name="situationAchat" value="pour_offrir"><label
 										for="pour_offrir">Achat pour offrir</label>
 
 								</div>
@@ -482,21 +497,23 @@
 
 						</tr>
 						<tr>
-							<td><label>Raison du choix de l'opérateur</label></td>
+							<td><label for="raisonChoix">Raison du choix de l'opérateur*</label></td>
 							<td>
 								<div id="raisonChoix">
-									<input type="radio" id="img" name="raisonChoix"><label
-										for="img">Image</label> <input type="radio" id="prix"
+									<input type="radio" value="img||qos" id="img" name="raisonChoix"><label
+										for="img">Image</label> <input type="radio" value="prix||offre" id="prix"
 										name="raisonChoix"><label for="prix">Prix</label> <input
-										type="radio" id="qos" name="raisonChoix"><label
+										type="radio" value="img||qos" id="qos" name="raisonChoix"><label
 										for="qos">Qualité de service</label> <input type="radio"
-										id="offre" name="raisonChoix"><label for="offre">Offre</label>
+										id="offre" value="prix||offre" name="raisonChoix"><label for="offre">Offre</label>
 								</div>
 							</td>
 						</tr>
 						<tr>
 							<td><label>Dépenses</label></td>
-							<td><select >
+							<td><select>
+									<option selected="selected" value="">Choisissez une
+										plage de dépences</option>
 									<option>0-5</option>
 									<option>5-15</option>
 									<option>15-25</option>
@@ -515,6 +532,8 @@
 						<tr>
 							<td><label>Lien de parenté</label></td>
 							<td><select id="lien_parente" name="lienParente">
+									<option selected="selected" value="">Choisissez un
+										lien de parenté</option>
 									<option>Fils/Fille</option>
 									<option>Epoux/Epouse</option>
 									<option>Autre</option>
@@ -533,7 +552,7 @@
 							<td><label>Date de naissance</label></td>
 							<td><input type="text" id="dateNaissanceUtilisateur"></td>
 						</tr>
-						
+
 						<tr>
 							<td><label>Séxe</label></td>
 							<td>
@@ -554,9 +573,13 @@
 							<td><label>Ville</label></td>
 							<td><input name="villeUtilisateur" id="villeUtilisateur"></td>
 							<td><label>Code Postal</label></td>
-							<td><input name="codePostalUtilisateur" id="codePostalUtilisateur"></td>
+							<td><input name="codePostalUtilisateur"
+								id="codePostalUtilisateur"></td>
 							<td><label>Gouvernorat</label></td>
-							<td><select id="gouvernoratUtilisateur" name="gouvernoratUtilisateur">
+							<td><select id="gouvernoratUtilisateur"
+								name="gouvernoratUtilisateur">
+									<option selected="selected" value="">Choisissez un
+										gouvernorat</option>
 									<option>Ariana</option>
 									<option>Béja</option>
 									<option>Ben Arous</option>
@@ -588,19 +611,22 @@
 						<tr>
 							<td><label>Niveau scolaire</label></td>
 							<td><div id="nivscoAccomp">
-									<input type="radio" id="primaireAccomp" name="nivscoAccomp"><label
+									<input type="radio" id="primaireAccomp"
+										name="niveauScolaireUtilisateur"><label
 										for="primaireAccomp">Primaire</label> <input type="radio"
-										id="secondaireAccomp" name="nivscoAccomp"><label
+										id="secondaireAccomp" name="niveauScolaireUtilisateur"><label
 										for="secondaireAccomp">Secondaire</label> <input type="radio"
-										id="superieurAccomp" name="nivscoAccomp"><label
+										id="superieurAccomp" name="niveauScolaireUtilisateur"><label
 										for="superieurAccomp">Superieur</label>
 
 								</div></td>
 						</tr>
 						<tr>
 							<td><label>Profession</label></td>
-							<td><select name="professionUtilisateur" id="professionUtilisateur"
-								name="professionUtilisateur">
+							<td><select name="professionUtilisateur"
+								id="professionUtilisateur" name="professionUtilisateur">
+									<option selected="selected" value="">Choisissez une
+										profession</option>
 									<option>Salarié</option>
 									<option>Cadre Moyen</option>
 									<option>Cadre Supérieur</option>
@@ -619,13 +645,13 @@
 							<td><label>Etat civil</label></td>
 							<td>
 								<div id="etatradioAccomp">
-									<input type="radio" id="celibAccomp" name="etatradioAccomp"><label
-										for="celibAccomp">célibataire</label> <input type="radio"
-										id="marieAccomp" name="etatradioAccomp"><label
-										for="marieAccomp">Marié(e)</label> <input type="radio"
-										id="divorceAccomp" name="etatradioAccomp"><label
-										for="divorceAccomp">Divorcé(e)</label> <input type="radio"
-										id="veufAccomp" name="etatradioAccomp"><label
+									<input type="radio" id="celibAccomp"
+										name="etatCivilUtilisateur"><label for="celibAccomp">célibataire</label>
+									<input type="radio" id="marieAccomp"
+										name="etatCivilUtilisateur"><label for="marieAccomp">Marié(e)</label>
+									<input type="radio" id="divorceAccomp"
+										name="etatCivilUtilisateur"><label for="divorceAccomp">Divorcé(e)</label>
+									<input type="radio" id="veufAccomp" name="etatCivilUtilisateur"><label
 										for="veufAccomp">Veuf(ve)</label>
 								</div>
 							</td>
@@ -633,7 +659,9 @@
 
 						<tr>
 							<td><label>Revenu</label></td>
-							<td><select  >
+							<td><select>
+									<option selected="selected" value="">Choisissez une
+										plage de revenu</option>
 									<option>moins de 300</option>
 									<option>300-600</option>
 									<option>600-900</option>
@@ -655,14 +683,17 @@
 						<tr>
 							<td><label>Lien</label></td>
 							<td>
-								<div id="lienParente">
-									<input type="radio" id="ami" name="lienRadio"><label
+								<div id="lien_accompagnant">
+									<input type="radio" id="ami" name="lienAccompagnant"><label
 										for="ami">Ami</label> <input type="radio" id="parent"
-										name="lienRadio"><label for="parent">Parent</label> <input
-										type="radio" id="vendeur" name="lienRadio"><label
-										for="vendeur">Vendeur</label>
+										name="lienAccompagnant"><label for="parent">Parent</label>
+									<input type="radio" id="vendeur" name="lienAccompagnant"><label
+										for="vendeur">Vendeur</label> <input type="radio"
+										id="non_acccomp" name="lienAccompagnant"><label
+										for="non_acccomp">non accompagné</label>
 
-								</div>
+								</div> <input name="achatAccompagne" id="achatAccompagne"
+								value="false" hidden="true">
 							</td>
 						</tr>
 
@@ -670,17 +701,17 @@
 							<td><label>Opérateur téléphonique</label></td>
 							<td>
 								<div id="operateurRadio">
-									<input type="radio" id="tun" name="operateurRadio"><label
+									<input type="radio" id="tun" name="operateurAccompagnant"><label
 										for="tun">Tunisiana</label> <input type="radio" id="orange"
-										name="operateurRadio"><label for="orange">Orange</label>
-									<input type="radio" id="tt" name="operateurRadio"><label
+										name="operateurAccompagnant"><label for="orange">Orange</label>
+									<input type="radio" id="tt" name="operateurAccompagnant"><label
 										for="tt">Tunisie Télécom</label> <input type="radio"
-										id="ellissa" name="operateurRadio"><label
+										id="ellissa" name="operateurAccompagnant"><label
 										for="ellissa">Ellissa</label>
 								</div>
 							</td>
 						</tr>
-						
+
 					</table>
 
 				</div>

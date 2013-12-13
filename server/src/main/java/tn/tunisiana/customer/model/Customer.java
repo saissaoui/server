@@ -38,6 +38,11 @@ public class Customer implements java.io.Serializable {
 	private String name;
 	private String lastname;
 	private Integer age;
+	private String niveauScolaire;
+	private String niveauScolaireUtilisateur;
+	private String etatCivil;
+	private String etatCivilUtilisateur;
+	private String revenu;
 	private String gouvernorat;
 	private String adress;
 	private String country;
@@ -48,6 +53,11 @@ public class Customer implements java.io.Serializable {
 	private String idNumber;
 	private String profession;
 	private int raisonAchat;
+	private String raisonChangement;
+	private String situationAchat;
+	private String ancienOperateur;
+	private String ancienneOffre;
+	private String depenses;
 	private String lienParente;
 	private String nomUtilisateur;
 	private String prenomUtilisateur;
@@ -59,6 +69,8 @@ public class Customer implements java.io.Serializable {
 	private Long codePostal;
 	private String gouvernoratUtilisateur;
 	private String civiliteUtilisateur;
+	private String lienAccompagnant;
+	private String operateurAccompagnant;
 	private boolean achatAccompagne;
 	private String accompagnant;
 	private String raisonChoix;
@@ -388,6 +400,126 @@ public class Customer implements java.io.Serializable {
 
 	public void setOffres(List<Offer> offres) {
 		this.offres = offres;
+	}
+
+
+	public String getNiveauScolaire() {
+		return niveauScolaire;
+	}
+
+
+	public void setNiveauScolaire(String niveauScolaire) {
+		this.niveauScolaire = niveauScolaire;
+	}
+
+
+	public String getEtatCivil() {
+		return etatCivil;
+	}
+
+
+	public void setEtatCivil(String etatCivil) {
+		this.etatCivil = etatCivil;
+	}
+
+
+	public String getRevenu() {
+		return revenu;
+	}
+
+
+	public void setRevenu(String revenu) {
+		this.revenu = revenu;
+	}
+
+
+	public String getRaisonChangement() {
+		return raisonChangement;
+	}
+
+
+	public void setRaisonChangement(String raisonChangement) {
+		this.raisonChangement = raisonChangement;
+	}
+
+
+	public String getSituationAchat() {
+		return situationAchat;
+	}
+
+
+	public void setSituationAchat(String situationAchat) {
+		this.situationAchat = situationAchat;
+	}
+
+
+	public String getAncienOperateur() {
+		return ancienOperateur;
+	}
+
+
+	public void setAncienOperateur(String ancienOperateur) {
+		this.ancienOperateur = ancienOperateur;
+	}
+
+
+	public String getAncienneOffre() {
+		return ancienneOffre;
+	}
+
+
+	public void setAncienneOffre(String ancienneOffre) {
+		this.ancienneOffre = ancienneOffre;
+	}
+
+
+	public String getDepenses() {
+		return depenses;
+	}
+
+
+	public void setDepenses(String depenses) {
+		this.depenses = depenses;
+	}
+
+
+	public String getLienAccompagnant() {
+		return lienAccompagnant;
+	}
+
+
+	public void setLienAccompagnant(String lienAccompagnant) {
+		this.lienAccompagnant = lienAccompagnant;
+	}
+
+
+	public String getOperateurAccompagnant() {
+		return operateurAccompagnant;
+	}
+
+
+	public void setOperateurAccompagnant(String operateurAccompagnant) {
+		this.operateurAccompagnant = operateurAccompagnant;
+	}
+
+
+	public String getNiveauScolaireUtilisateur() {
+		return niveauScolaireUtilisateur;
+	}
+
+
+	public void setNiveauScolaireUtilisateur(String niveauScolaireUtilisateur) {
+		this.niveauScolaireUtilisateur = niveauScolaireUtilisateur;
+	}
+
+
+	public String getEtatCivilUtilisateur() {
+		return etatCivilUtilisateur;
+	}
+
+
+	public void setEtatCivilUtilisateur(String etatCivilUtilisateur) {
+		this.etatCivilUtilisateur = etatCivilUtilisateur;
 	}
 
 	
