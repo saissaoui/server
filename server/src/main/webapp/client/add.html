@@ -18,7 +18,9 @@
 <body>
 	<div id="includedContent"></div>
 	<div id="dialogOffers">
-		<div id="offersAccor"></div>
+		<div id="offersAccor">
+		<label id="no_offers" hidden="true">Pas d'offres correspondant aux informations renseignées </label>
+		</div>
 
 
 	</div>
@@ -684,12 +686,12 @@
 							<td><label>Lien</label></td>
 							<td>
 								<div id="lien_accompagnant">
-									<input type="radio" id="ami" name="lienAccompagnant"><label
-										for="ami">Ami</label> <input type="radio" id="parent"
-										name="lienAccompagnant"><label for="parent">Parent</label>
-									<input type="radio" id="vendeur" name="lienAccompagnant"><label
+									<input type="radio" value="ami" id="ami" name="accompagnant"><label
+										for="ami">Ami</label> <input type="radio" value="parent" id="parent"
+										name="accompagnant"><label for="parent">Parent</label>
+									<input type="radio" id="vendeur" value="vendeur" name="accompagnant"><label
 										for="vendeur">Vendeur</label> <input type="radio"
-										id="non_acccomp" name="lienAccompagnant"><label
+										id="non_acccomp" name="accompagnant"><label
 										for="non_acccomp">non accompagné</label>
 
 								</div> <input name="achatAccompagne" id="achatAccompagne"

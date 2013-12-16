@@ -7,6 +7,7 @@ $(function() {
 	$("#accordion").accordion({
 		heightStyle : "content"
 	});
+	
 	$("#raisonAchat").change(function() {
 		if (this.value === "7") {
 			$("#tr_raisonsChang").show();
@@ -259,17 +260,18 @@ $(document)
 
 														$("#offersAccor")
 																.empty();
-														$("#dialogOffers")
-																.dialog("open");
-														$
-																.each(
-																		json,
-																		function(
-																				i,
-																				item) {
+														
+														
+														if(json.length==0)
+															//$("#no_offers").show();
+															alert("Pas d'offres correspondant aux informations renseignées");
+														else{
+															$("#dialogOffers")
+															.dialog("open");
+															$("#no_offers").hide();
+														$.each(json,function(i,item) {
 
-																			$(
-																					"#offersAccor")
+																			$("#offersAccor")
 																					.append(
 																							"<h3>"
 																									+ item.offerName
@@ -278,6 +280,7 @@ $(document)
 																									+ "</div>");
 
 																		});
+													}
 														$("#offersAccor")
 																.accordion(
 																		"refresh");
