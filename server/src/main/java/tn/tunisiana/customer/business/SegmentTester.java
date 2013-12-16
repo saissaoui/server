@@ -61,8 +61,10 @@ public class SegmentTester {
 
 					boolean isOk = (Boolean) interpreter.get("isOk");
 
-					if (isOk && !offers.contains(corresp.getOffre()))
-						offers.add(corresp.getOffre());
+					if (isOk)
+						for (Offer offer : corresp.getOffres())
+							if (!offers.contains(offer))
+								offers.add(offer);
 
 					expression = "( ";
 				}

@@ -3,6 +3,7 @@ package tn.tunisiana.customer.model;
 import static javax.persistence.GenerationType.IDENTITY;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -13,9 +14,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.IndexColumn;
 
 @Entity
 @Table(name = "correspondance", catalog = "tunisianaDb")
@@ -23,8 +24,7 @@ public class Correspondance {
 
 	private int idCorrespondance;
 	private List<Condition> conditions;
-	private Offer Offre;
-	
+	private Set<Offer> Offres;
 
 	public Correspondance() {
 		super();
@@ -51,16 +51,15 @@ public class Correspondance {
 		this.conditions = conditions;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "offre_id", nullable = false)
-	public Offer getOffre() {
-		return Offre;
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinTable(name = "correspondance_offer", catalog = "tunisianaDb", joinColumns = { @JoinColumn(name = "correspondance_id",nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "offer_id",nullable = false, updatable = false) })
+	@IndexColumn(name="idoffer")
+	public Set<Offer> getOffres() {
+		return Offres;
 	}
 
-	public void setOffre(Offer offre) {
-		Offre = offre;
+	public void setOffres(Set<Offer> offres) {
+		Offres = offres;
 	}
-
-	
 
 }

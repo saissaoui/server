@@ -4,6 +4,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -43,7 +44,7 @@ public class Segment {
 		this.criteres = criteres;
 	}
 	
-	@OneToMany(fetch = FetchType.EAGER)
+	@OneToMany(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
 	@JoinColumn(name="idsegment")
 	public List<Correspondance> getCorrespondances() {
 		return correspondances;
