@@ -84,6 +84,7 @@ $(function() {
 	$("#operateurRadio").buttonset();
 	$("#autreOperateurRadio").buttonset();
 	$("#autreOperateurRadio").change(function(){
+		$("#line_type").empty();
 		var op = "";
 		if($("#autretun").is(':checked')){
 			op="tunisiana";
@@ -97,14 +98,14 @@ $(function() {
 		
 		$.ajax({url : "../rest/offer/get/"+op,
 		    type : "GET",
-			dataType : "text",
+			dataType : "json",
 			contentType : "json",
 			success : function(json) {
 				console.log(json);
 				sel= '';
 				$.each(json,function(i,item){
-					console.log(item);
-					//sel+="<select value="+item.idoffer+">"+item.offerName+"</select>";
+				
+					sel+="<option value="+item.idoffer+">"+item.offerName+"</option>";
 					
 				});
 				$("#line_type").append(sel);
