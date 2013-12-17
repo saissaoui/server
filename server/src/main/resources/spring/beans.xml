@@ -16,7 +16,7 @@ http://cxf.apache.org/schemas/jaxrs.xsd">
 	<context:property-placeholder />
 	<context:annotation-config />
 
-	<tx:annotation-driven transaction-manager="transactionManager"  />
+	<tx:annotation-driven transaction-manager="transactionManager" />
 	<bean
 		class="org.springframework.web.context.support.ServletContextPropertyPlaceholderConfigurer" />
 
@@ -59,7 +59,7 @@ http://cxf.apache.org/schemas/jaxrs.xsd">
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 
-		<property name="sessionFactory" ref="sessionFactory"  />
+		<property name="sessionFactory" ref="sessionFactory" />
 
 	</bean>
 
@@ -75,6 +75,10 @@ http://cxf.apache.org/schemas/jaxrs.xsd">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 
 	</bean>
+	<bean id="offerDao" class="tn.tunisiana.customer.dao.impl.OfferDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+
+	</bean>
 
 	<!-- Services beans -->
 
@@ -87,6 +91,9 @@ http://cxf.apache.org/schemas/jaxrs.xsd">
 	<bean id="oService"
 		class="tn.tunisiana.customer.services.impl.OfferManagerServiceImpl">
 		<property name="sDao" ref="segmentDao" />
+
+		<property name="oDao" ref="offerDao" />
+
 	</bean>
 
 

@@ -19,14 +19,17 @@
 	<div id="includedContent"></div>
 	<div id="dialogOffers">
 		<div id="offersAccor">
-		<label id="no_offers" hidden="true">Pas d'offres correspondant aux informations renseignées </label>
+			<label id="no_offers" hidden="true">Pas d'offres
+				correspondant aux informations renseignées </label>
 		</div>
 
 
 	</div>
 	<div id="content" class="content">
-		<h2 class="demoHeaders">Formulaire d'informations Client(Les champs marquées par une * sont obligatoires à saisir)</h2>
-		<h3 id="error" style="color: red" hidden="true">Il existe des erreurs dans les champs marqués en rouge</h3>
+		<h2 class="demoHeaders">Formulaire d'informations Client(Les
+			champs marquées par une * sont obligatoires à saisir)</h2>
+		<h3 id="error" style="color: red" hidden="true">Il existe des
+			erreurs dans les champs marqués en rouge</h3>
 		<form id="cutomerForm" action="../rest/offer/getAll" method="post">
 			<div id="accordion">
 				<h3>Informations Générales</h3>
@@ -303,7 +306,8 @@
 						<tr>
 							<td><label for="phone">Téléphone Fixe</label></td>
 							<td><input name="phone" id="phone"></td>
-							<td><label id="phone_error" style="color: red" hidden="true">Le numéro doit contenir 8 chiffres et commencer par 7</label></td>
+							<td><label id="phone_error" style="color: red" hidden="true">Le
+									numéro doit contenir 8 chiffres et commencer par 7</label></td>
 						</tr>
 						<tr>
 							<td><label for="email">Adresse éléctronique</label></td>
@@ -317,6 +321,7 @@
 									<option id="cin" value="cin">Carte d'identité
 										Nationale</option>
 									<option id="pass" value="pass" hidden="true">Passeport</option>
+									<option id="csj" value="pass" hidden="true">Carte de séjour</option>
 
 							</select></td>
 
@@ -441,35 +446,36 @@
 				<div>
 					<table>
 						<tr>
-							<td><label for="raisonAchat">Raison d'achat*</label></td>
-							<td><select id="raisonAchat" name="raisonAchat">
+							<td><label for="situation_ligne">Situation de la
+									ligne</label></td>
+							<td><select id="situation_ligne" name="situationLigne">
 									<option selected="selected" value="">Choisissez une
-										raison d'achat</option>
-									<option value="1">Usage personnel</option>
-									<option value="2">Usage professionnel</option>
-									<option value="3">Pour autre</option>
-									<option value="4">Local</option>
-									<option value="5">International</option>
-									<option value="6">Roaming</option>
-									<option value="7">Remplacement de ligne</option>
-									<option value="8">Deuxième ligne</option>
-									<option value="9">Pour autre</option>
+										situation de la ligne</option>
+									<option value="first">Première ligne</option>
+									<option value="rep">Remplacement de ligne</option>
+									<option value="second">Deuxième ligne</option>
+
 							</select></td>
 						</tr>
 						<tr id="tr_autreOp" hidden="true">
-							<td><label for="autreOperateurRadio">Autre opérateur mobile*</label></td>
+							<td><label for="autreOperateurRadio">Autre opérateur
+									mobile*</label></td>
 							<td>
 								<div id="autreOperateurRadio">
-									<input value="tun" type="radio" id="autretun" name="autreOperateur"><label
-										for="autretun">Tunisiana</label> <input type="radio"
-										value="org" id="autreorange" name="autreOperateur"><label
-										for="autreorange">Orange</label> <input type="radio"
-										value="tt" id="autrett" name="autreOperateur"><label
-										for="autrett">Tunisie Télécom</label> <input type="radio"
-										value="els" id="autreellissa" name="autreOperateur"><label
-										for="autreellissa">Ellissa</label>
-								</div> <br> <label>Quel type de ligne vous utilisez</label> <textarea
-									id="line_type"></textarea>
+									<input value="tun" type="radio" id="autretun"
+										name="autreOperateur"><label for="autretun">Tunisiana</label>
+									<input type="radio" value="org" id="autreorange"
+										name="autreOperateur"><label for="autreorange">Orange</label>
+									<input type="radio" value="tt" id="autrett"
+										name="autreOperateur"><label for="autrett">Tunisie
+										Télécom</label> 
+								</div> <label>Quel type de ligne vous utilisez</label> <textarea
+									id=""></textarea>
+									<select id="line_type" name="lineType">
+									<option selected="selected" value="">choisissez un type d'offre</option>
+									
+
+							</select>
 
 							</td>
 
@@ -488,26 +494,37 @@
 									<input type="radio" id="presse" name="situationAchat"><label
 										for="presse">Quand vous êtes pressé</label> <input
 										type="radio" id="pas_presse" name="situationAchat"><label
-										for="pas_presse">Quand vous n’êtes pas pressé</label> <input
-										type="radio" id="pour_soi" name="situationAchat"><label
-										for="pour_soi">Achat pour soi</label> <input type="radio"
-										id="pour_offrir" name="situationAchat" value="pour_offrir"><label
-										for="pour_offrir">Achat pour offrir</label>
+										for="pas_presse">Quand vous n’êtes pas pressé</label>
 
 								</div>
 							</td>
 
 						</tr>
 						<tr>
-							<td><label for="raisonChoix">Raison du choix de l'opérateur*</label></td>
+							<td><label>Mode d'utilisation</label></td>
+
+							<td>
+								<div id="mode_utilisation">
+									<input type="radio" id="local" name="modeUtilisation"><label
+										for="local">Local</label> <input type="radio" id="inter"
+										name="modeUtilisation"><label for="inter">International</label>
+
+								</div>
+							</td>
+
+						</tr>
+						<tr>
+							<td><label for="raisonChoix">Raison du choix de
+									l'opérateur*</label></td>
 							<td>
 								<div id="raisonChoix">
-									<input type="radio" value="img||qos" id="img" name="raisonChoix"><label
-										for="img">Image</label> <input type="radio" value="prix||offre" id="prix"
-										name="raisonChoix"><label for="prix">Prix</label> <input
-										type="radio" value="img||qos" id="qos" name="raisonChoix"><label
-										for="qos">Qualité de service</label> <input type="radio"
-										id="offre" value="prix||offre" name="raisonChoix"><label for="offre">Offre</label>
+									<input type="radio" value="img||qos" id="img"
+										name="raisonChoix"><label for="img">Image</label> <input
+										type="radio" value="prix||offre" id="prix" name="raisonChoix"><label
+										for="prix">Prix</label> <input type="radio" value="img||qos"
+										id="qos" name="raisonChoix"><label for="qos">Qualité
+										de service</label> <input type="radio" id="offre" value="prix||offre"
+										name="raisonChoix"><label for="offre">Offre</label>
 								</div>
 							</td>
 						</tr>
@@ -525,6 +542,18 @@
 
 							</select></td>
 						</tr>
+						<tr>
+							<td><label for="raisonAchat">Raison d'achat*</label></td>
+							<td><select id="raisonAchat" name="raisonAchat">
+									<option selected="selected" value="">Choisissez une
+										raison d'achat</option>
+									<option value="1">Usage personnel</option>
+									<option value="2">Usage professionnel</option>
+									
+									<option value="9">Pour autrui</option>
+							</select></td>
+						</tr>
+
 					</table>
 					<table id="infos_autre_utilisateur" hidden="true">
 						<tr>
@@ -687,11 +716,11 @@
 							<td>
 								<div id="lien_accompagnant">
 									<input type="radio" value="ami" id="ami" name="accompagnant"><label
-										for="ami">Ami</label> <input type="radio" value="parent" id="parent"
-										name="accompagnant"><label for="parent">Parent</label>
-									<input type="radio" id="vendeur" value="vendeur" name="accompagnant"><label
-										for="vendeur">Vendeur</label> <input type="radio"
-										id="non_acccomp" name="accompagnant"><label
+										for="ami">Ami</label> <input type="radio" value="parent"
+										id="parent" name="accompagnant"><label for="parent">Parent</label>
+									<input type="radio" id="vendeur" value="vendeur"
+										name="accompagnant"><label for="vendeur">Vendeur</label>
+									<input type="radio" id="non_acccomp" name="accompagnant"><label
 										for="non_acccomp">non accompagné</label>
 
 								</div> <input name="achatAccompagne" id="achatAccompagne"

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.transaction.annotation.Transactional;
 
 import tn.tunisiana.customer.business.SegmentTester;
+import tn.tunisiana.customer.dao.impl.OfferDao;
 import tn.tunisiana.customer.dao.impl.SegmentDao;
 import tn.tunisiana.customer.model.Customer;
 import tn.tunisiana.customer.model.Offer;
@@ -16,6 +17,7 @@ public class OfferManagerServiceImpl implements IOfferManagerService {
 
 	private SegmentTester segTester = new SegmentTester();
 	private SegmentDao sDao;
+	private OfferDao oDao;
 
 	@Transactional
 	public List<Offer> getOffersFor(Customer customer) {
@@ -36,6 +38,11 @@ public class OfferManagerServiceImpl implements IOfferManagerService {
 		return offers;
 
 	}
+	
+	public List<Offer> getOffersByOperator(String operator){
+		
+		return oDao.getOffersByOperator(operator);
+	}
 
 	public SegmentDao getsDao() {
 		return sDao;
@@ -44,6 +51,15 @@ public class OfferManagerServiceImpl implements IOfferManagerService {
 	public void setsDao(SegmentDao sDao) {
 		this.sDao = sDao;
 	}
+
+	public OfferDao getoDao() {
+		return oDao;
+	}
+
+	public void setoDao(OfferDao oDao) {
+		this.oDao = oDao;
+	}
+	
 	
 	
 }

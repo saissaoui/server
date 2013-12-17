@@ -74,7 +74,8 @@ public class Customer implements java.io.Serializable {
 	private boolean achatAccompagne;
 	private String accompagnant;
 	private String raisonChoix;
-
+	private String situationLigne;
+	private String modeUtilisation;
 	@Transient
 	private int distance;
 	
@@ -521,6 +522,28 @@ public class Customer implements java.io.Serializable {
 	public void setEtatCivilUtilisateur(String etatCivilUtilisateur) {
 		this.etatCivilUtilisateur = etatCivilUtilisateur;
 	}
+
+
+	public String getSituationLigne() {
+		return situationLigne;
+	}
+
+
+	public void setSituationLigne(String situationLigne) {
+		this.situationLigne = situationLigne;
+	}
+
+
+	public String getModeUtilisation() {
+		return modeUtilisation;
+	}
+
+
+	public void setModeUtilisation(String modeUtilisation) {
+		this.modeUtilisation = modeUtilisation;
+	}
+	
+	
 
 	
 }

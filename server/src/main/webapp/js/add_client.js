@@ -7,20 +7,16 @@ $(function() {
 	$("#accordion").accordion({
 		heightStyle : "content"
 	});
-	
-	$("#raisonAchat").change(function() {
-		if (this.value === "7") {
-			$("#tr_raisonsChang").show();
 
-			$("#tr_autreOp").hide();
-		} else if (this.value === "8") {
-			$("#tr_raisonsChang").hide();
-			$("#tr_autreOp").show();
+	$("#raisonAchat").change(function() {
+
+		if (this.value === "9") {
+
+			$("#infos_autre_utilisateur").show();
 
 		} else {
+			$("#infos_autre_utilisateur").hide();
 
-			$("#tr_raisonsChang").hide();
-			$("#tr_autreOp").hide();
 		}
 	});
 
@@ -30,11 +26,16 @@ $(function() {
 	$("#country").change(function() {
 		if (this.value === "Tunisie") {
 			$('#pass').hide();
+			$('#csj').hide();
+			$('#cin').show();
+
 		}
 
-		else
+		else {
 			$('#pass').show();
-
+			$('#csj').show();
+			$('#cin').hide();
+		}
 	});
 	$("#nivscoAccomp").buttonset();
 	$("#situation_achat").buttonset();
@@ -49,6 +50,21 @@ $(function() {
 		}
 	});
 	$("#etatradioAccomp").buttonset();
+	$("#mode_utilisation").buttonset();
+	$("#situation_ligne").change(function() {
+		if (this.value === "rep") {
+			$("#tr_raisonsChang").show();
+			$("#tr_autreOp").hide();
+		}
+
+		else if (this.value === "second") {
+			$("#tr_raisonsChang").hide();
+			$("#tr_autreOp").show();
+		} else {
+			$("#tr_raisonsChang").hide();
+			$("#tr_autreOp").hide();
+		}
+	});
 	$("#lien_accompagnant").buttonset();
 	$("#lien_accompagnant").change(function() {
 
@@ -59,7 +75,7 @@ $(function() {
 			$("#achatAccompagne").val("true");
 
 		}
-	
+
 	});
 	$("#civilite").buttonset();
 	$("#civiliteUtilisateur").buttonset();
@@ -67,7 +83,37 @@ $(function() {
 	$("#raisonChoix").buttonset();
 	$("#operateurRadio").buttonset();
 	$("#autreOperateurRadio").buttonset();
-
+	$("#autreOperateurRadio").change(function(){
+		var op = "";
+		if($("#autretun").is(':checked')){
+			op="tunisiana";
+		}
+		else if($("#autreorange").is(':checked')){
+			op="orange";
+		}
+		else if($("#autrett").is(':checked')){
+			op="tt";
+		}
+		
+		$.ajax({url : "../rest/offer/get/"+op,
+		    type : "GET",
+			dataType : "text",
+			contentType : "json",
+			success : function(json) {
+				console.log(json);
+				sel= '';
+				$.each(json,function(i,item){
+					console.log(item);
+					//sel+="<select value="+item.idoffer+">"+item.offerName+"</select>";
+					
+				});
+				$("#line_type").append(sel);
+			},
+			error :function() {
+				alert("fail retrieving operators");
+			}
+		});
+	});
 	$("#nivsco").buttonset();
 	$("#dateNaissance").datepicker({
 		dateFormat : "dd-mm-yy",
@@ -127,13 +173,14 @@ $(document)
 													.css({
 														color : "green"
 													});
-										
-										if(!($('#phone').val().match(/^7\d{7}/))){
+
+										if (!($('#phone').val()
+												.match(/^7\d{7}/))) {
 											valid = false;
 											$("label[for='phone']").css({
 												color : "red"
 											});
-											
+
 											$('#phone_error').show();
 										} else {
 											$("label[for='phone']").css({
@@ -142,11 +189,11 @@ $(document)
 
 											$('#phone_error').hide();
 										}
-										
-										
 
 										if (jQuery
-												.trim($('input[name=raisonChoix]:radio:checked').val()).length == 0) {
+												.trim($(
+														'input[name=raisonChoix]:radio:checked')
+														.val()).length == 0) {
 											valid = false;
 											$("label[for='raisonChoix']").css({
 												color : "red"
@@ -180,7 +227,8 @@ $(document)
 										}
 										if ($("#raisonAchat").val() == 8) {
 											if (jQuery
-													.trim($('input[name=autreOperateur]:radio:checked')
+													.trim($(
+															'input[name=autreOperateur]:radio:checked')
 															.val()).length == 0) {
 												valid = false;
 												$(
@@ -196,12 +244,11 @@ $(document)
 														});
 											}
 										}
-										
-										if (!valid){
+
+										if (!valid) {
 											$("#error").show();
 											return valid;
-										}
-										else
+										} else
 											$("#error").hide();
 										// je récupère les valeurs
 										var customer = new Object();
@@ -236,7 +283,7 @@ $(document)
 
 										var frm = $(this).serializeArray();
 										var customerJson = '{';
-										
+
 										$.each(frm, function(key, value) {
 											customerJson += ' "' + value.name
 													+ '" : "' + value.value
@@ -246,41 +293,43 @@ $(document)
 												0, customerJson.length - 2)
 												+ '}';
 
-										$
-												.ajax({
-													url : $(this)
-															.attr('action'),
-													type : $(this).attr(
-															'method'),
-													data : customerJson,
-													dataType : "json",
-													contentType : "json",
-
-													success : function(json) {
+										$.ajax({url : $(this).attr('action'),
+											    type : $(this).attr('method'),
+												data : customerJson,
+												dataType : "json",
+												contentType : "json",
+												success : function(json) {
 
 														$("#offersAccor")
 																.empty();
-														
-														
-														if(json.length==0)
-															//$("#no_offers").show();
+
+														if (json.length == 0)
+															// $("#no_offers").show();
 															alert("Pas d'offres correspondant aux informations renseignées");
-														else{
+														else {
 															$("#dialogOffers")
-															.dialog("open");
-															$("#no_offers").hide();
-														$.each(json,function(i,item) {
+																	.dialog(
+																			"open");
+															$("#no_offers")
+																	.hide();
+															$
+																	.each(
+																			json,
+																			function(
+																					i,
+																					item) {
 
-																			$("#offersAccor")
-																					.append(
-																							"<h3>"
-																									+ item.offerName
-																									+ "</h3><div >"
-																									+ item.description
-																									+ "</div>");
+																				$(
+																						"#offersAccor")
+																						.append(
+																								"<h3>"
+																										+ item.offerName
+																										+ "</h3><div >"
+																										+ item.description
+																										+ "</div>");
 
-																		});
-													}
+																			});
+														}
 														$("#offersAccor")
 																.accordion(
 																		"refresh");
