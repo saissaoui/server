@@ -15,17 +15,16 @@
 <style type="text/css">
 </style>
 </head>
-<body>
+<body >
 	<div id="includedContent"></div>
-	<div id="dialogOffers">
+	<div id="dialogOffers" >
 		<div id="offersAccor">
 			<label id="no_offers" hidden="true">Pas d'offres
 				correspondant aux informations renseignées </label>
 		</div>
-
-
 	</div>
-	<div id="content" class="content">
+	
+	<div id="content" class="content" style="overflow: hidden">
 		<h2 class="demoHeaders">Formulaire d'informations Client(Les
 			champs marquées par une * sont obligatoires à saisir)</h2>
 		<h3 id="error" style="color: red" hidden="true">Il existe des
@@ -321,7 +320,8 @@
 									<option id="cin" value="cin">Carte d'identité
 										Nationale</option>
 									<option id="pass" value="pass" hidden="true">Passeport</option>
-									<option id="csj" value="pass" hidden="true">Carte de séjour</option>
+									<option id="csj" value="pass" hidden="true">Carte de
+										séjour</option>
 
 							</select></td>
 
@@ -463,16 +463,15 @@
 							<td>
 								<div id="autreOperateurRadio">
 									<input value="tun" type="radio" id="autretun"
-										name="autreOperateur"><label for="autretun">Tunisiana</label>
+										name="ancienOperateur"><label for="autretun">Tunisiana</label>
 									<input type="radio" value="org" id="autreorange"
-										name="autreOperateur"><label for="autreorange">Orange</label>
+										name="ancienOperateur"><label for="autreorange">Orange</label>
 									<input type="radio" value="tt" id="autrett"
-										name="autreOperateur"><label for="autrett">Tunisie
-										Télécom</label> 
-								</div> 
-									<select id="line_type" name="lineType">
-									<option selected="selected" value="">choisissez un type d'offre</option>
-									
+										name="ancienOperateur"><label for="autrett">Tunisie
+										Télécom</label>
+								</div> <select id="line_type" name="ancienneOffre" hidden="true">
+
+
 
 							</select>
 
@@ -548,7 +547,7 @@
 										raison d'achat</option>
 									<option value="1">Usage personnel</option>
 									<option value="2">Usage professionnel</option>
-									
+
 									<option value="9">Pour autrui</option>
 							</select></td>
 						</tr>
@@ -752,5 +751,6 @@
 			<input type="submit" value="Valider Les informations du client">
 		</form>
 	</div>
+	<div class="modal"><!-- Place at bottom of page -->ff</div>
 </body>
 </html>

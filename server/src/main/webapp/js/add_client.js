@@ -3,6 +3,7 @@
  */
 
 $(function() {
+
 	$("#includedContent").load("../header.html");
 	$("#accordion").accordion({
 		heightStyle : "content"
@@ -83,38 +84,46 @@ $(function() {
 	$("#raisonChoix").buttonset();
 	$("#operateurRadio").buttonset();
 	$("#autreOperateurRadio").buttonset();
-	$("#autreOperateurRadio").change(function(){
-		$("#line_type").empty();
-		var op = "";
-		if($("#autretun").is(':checked')){
-			op="tunisiana";
-		}
-		else if($("#autreorange").is(':checked')){
-			op="orange";
-		}
-		else if($("#autrett").is(':checked')){
-			op="tt";
-		}
-		
-		$.ajax({url : "../rest/offer/get/"+op,
-		    type : "GET",
-			dataType : "json",
-			contentType : "json",
-			success : function(json) {
-				console.log(json);
-				sel= '';
-				$.each(json,function(i,item){
-				
-					sel+="<option value="+item.idoffer+">"+item.offerName+"</option>";
-					
-				});
-				$("#line_type").append(sel);
-			},
-			error :function() {
-				alert("fail retrieving operators");
-			}
-		});
-	});
+	$("#autreOperateurRadio")
+			.change(
+					function() {
+						$("#line_type").hide();
+						$("#line_type").empty();
+						var op = "";
+						if ($("#autretun").is(':checked')) {
+							op = "tunisiana";
+						} else if ($("#autreorange").is(':checked')) {
+							op = "orange";
+						} else if ($("#autrett").is(':checked')) {
+							op = "tt";
+						}
+
+						$
+								.ajax({
+									url : "../rest/offer/get/" + op,
+									type : "GET",
+									dataType : "json",
+									contentType : "json",
+									success : function(json) {
+
+										sel = '<option selected="selected" value="">choisissez un type d\'offre</option>';
+
+										$.each(json, function(i, item) {
+
+											sel += "<option value="
+													+ item.idoffer + ">"
+													+ item.offerName
+													+ "</option>";
+
+										});
+										$("#line_type").append(sel);
+									},
+									error : function() {
+										alert("fail retrieving operators");
+									}
+								});
+						$("#line_type").show();
+					});
 	$("#nivsco").buttonset();
 	$("#dateNaissance").datepicker({
 		dateFormat : "dd-mm-yy",
@@ -136,6 +145,24 @@ $(function() {
 
 		close : function() {
 
+		}
+	});
+	$("#loading").dialog({
+		autoOpen : false,
+		height : 500,
+		width : 800,
+		modal : true,
+
+		close : function() {
+
+		}
+	}).on({
+		ajaxStart : function() {
+			console.log("start");
+			$(this).dialog("open");
+		},
+		ajaxStop : function() {
+			$(this).dialog("close");
 		}
 	});
 
@@ -294,12 +321,16 @@ $(document)
 												0, customerJson.length - 2)
 												+ '}';
 
-										$.ajax({url : $(this).attr('action'),
-											    type : $(this).attr('method'),
-												data : customerJson,
-												dataType : "json",
-												contentType : "json",
-												success : function(json) {
+										$
+												.ajax({
+													url : $(this)
+															.attr('action'),
+													type : $(this).attr(
+															'method'),
+													data : customerJson,
+													dataType : "json",
+													contentType : "json",
+													success : function(json) {
 
 														$("#offersAccor")
 																.empty();
@@ -347,3 +378,14 @@ $(document)
 										// lui-même le formulaire
 									});
 				});
+
+
+$(document).on({
+	ajaxStart : function() {
+		console.log("start");
+		$(".modal").css("display","block");
+	},
+	ajaxStop : function() {
+		console.log("stop");$(".modal").css("display","none");
+	}
+});
