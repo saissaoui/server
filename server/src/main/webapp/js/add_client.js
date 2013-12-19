@@ -203,7 +203,8 @@ $(document)
 													});
 
 										if (!($('#phone').val()
-												.match(/^7\d{7}/))) {
+												.match(/^7\d{7}/))&&!($('#phone').val()
+														.match(/^30\d{6}/))) {
 											valid = false;
 											$("label[for='phone']").css({
 												color : "red"

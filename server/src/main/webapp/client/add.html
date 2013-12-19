@@ -6,12 +6,16 @@
 <link href="../css/blitzer/jquery-ui-1.10.3.custom.css" rel="stylesheet">
 <link href="../css/global.css" rel="stylesheet">
 <link href="../css/add_client.css" rel="stylesheet">
+<link rel="stylesheet" href="../css/skel-noscript.css" />
 
+<link rel="stylesheet" href="../css/style-desktop.css" />
 <script src="../js/jquery-1.9.1.js"></script>
 <script src="../js/jquery-ui-1.10.3.custom.js"></script>
 <script src="../js/add_client.js">
-	
-</script>
+<script src="../js/config.js"></script>
+<script src="../js/skel.min.js"></script>
+<script src="../js/skel-panels.min.js"></script>
+
 <style type="text/css">
 </style>
 </head>
@@ -306,7 +310,7 @@
 							<td><label for="phone">Téléphone Fixe</label></td>
 							<td><input name="phone" id="phone"></td>
 							<td><label id="phone_error" style="color: red" hidden="true">Le
-									numéro doit contenir 8 chiffres et commencer par 7</label></td>
+									numéro doit contenir 8 chiffres et commencer par 7 pour un numéro Tunisie Télécom ou par 30 pour un numéro Orange</label></td>
 						</tr>
 						<tr>
 							<td><label for="email">Adresse éléctronique</label></td>
@@ -464,7 +468,7 @@
 								<div id="autreOperateurRadio">
 									<input value="tun" type="radio" id="autretun"
 										name="ancienOperateur"><label for="autretun">Tunisiana</label>
-									<input type="radio" value="org" id="autreorange"
+									<input type="radio" value="orange" id="autreorange"
 										name="ancienOperateur"><label for="autreorange">Orange</label>
 									<input type="radio" value="tt" id="autrett"
 										name="ancienOperateur"><label for="autrett">Tunisie
@@ -517,12 +521,10 @@
 							<td>
 								<div id="raisonChoix">
 									<input type="radio" value="img||qos" id="img"
-										name="raisonChoix"><label for="img">Image</label> <input
+										name="raisonChoix"><label for="img">Image ou Qualité
+										de service</label> <input
 										type="radio" value="prix||offre" id="prix" name="raisonChoix"><label
-										for="prix">Prix</label> <input type="radio" value="img||qos"
-										id="qos" name="raisonChoix"><label for="qos">Qualité
-										de service</label> <input type="radio" id="offre" value="prix||offre"
-										name="raisonChoix"><label for="offre">Offre</label>
+										for="prix">Prix ou offre</label> 
 								</div>
 							</td>
 						</tr>

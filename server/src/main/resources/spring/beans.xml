@@ -18,7 +18,7 @@ http://cxf.apache.org/schemas/jaxrs.xsd">
 
 	<tx:annotation-driven transaction-manager="transactionManager" />
 	<bean
-		class="org.springframework.web.context.support.ServletContextPropertyPlaceholderConfigurer" />
+		class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer" />
 
 	<!--Hibernate conf beans -->
 

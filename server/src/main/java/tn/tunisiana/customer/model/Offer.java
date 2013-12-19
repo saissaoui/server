@@ -78,7 +78,7 @@ public class Offer implements java.io.Serializable {
 		this.operateur = operateur;
 	}
 
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "equivalent_offer", catalog = "tunisianaDb", joinColumns = { @JoinColumn(name = "concurent_id", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "offer_id", nullable = false, updatable = false) })
 	public Set<Offer> getEquivalents() {
 		return equivalents;

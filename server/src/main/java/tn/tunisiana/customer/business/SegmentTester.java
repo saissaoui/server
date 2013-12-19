@@ -89,7 +89,8 @@ public class SegmentTester {
 				e.printStackTrace();
 			}
 		}
-
+		
+		
 		return offers;
 	}
 

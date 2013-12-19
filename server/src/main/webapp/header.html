@@ -1,65 +1,52 @@
 
-	<meta charset="utf-8">
-	<title>jQuery UI Example Page</title>
-	
-	<script>
+<meta charset="utf-8">
+<title>jQuery UI Example Page</title>
+
+<script>
 	$(function() {
-		
-		
+		/* console.log($(location).attr('pathname'));
+		console.log($(location));
+		console.log($("#home").attr('href')); */
+$("#nav a").each(function(){
 	
-
-		//menu script
-		$( "#menu" ).menu();
-		// Hover states on the static widgets
-		$( "#dialog-link, #icons li" ).hover(
-			function() {
-				$( this ).addClass( "ui-state-hover" );
-			},
-			function() {
-				$( this ).removeClass( "ui-state-hover" );
-			}
-		);
+	if($(location).attr('pathname')==$(this).attr('href'))
+		$(this).addClass("current-page-item");
+	else
+		$(this).removeClass("current-page-item");
+});
+		
 	});
+</script>
+<style>
+body {
+	font: 62.5% "Trebuchet MS", sans-serif;
+	margin: 50px;
+}
 
- 
-      
-    
-
-
-	</script>
-	<style>
-	body{
-		font: 62.5% "Trebuchet MS", sans-serif;
-		margin: 50px;
-	}
-	
-
-	.ui-menu {
-	 width: 500px;
-	 font-size: 30px;
- 	 min-height: 50px; /* définit la hauteur minimale du menu (dépendante de la valeur de font-size) */
-	 }
-	 ul#menu {
-	 width: 1000px; /* définit la largeur totale du menu */
-	 }
-	 ul#menu>li {
-	 width: 200px; /* définit la largeur des items de niveau 1 */
-	 float: left; /* définit le positionnement des items de niveau 1 */
-	 }
-
-	</style>
+</style>
 
 
-<div class="menu-div">
-<ul id="menu">
- <li><a href="/server/index.html">Accueil</a></li>
- <li><a href="client/add.html">Clients</a></li>
- <li><a href="/server/segments.html">Segments</a></li>
- <li><a href="#">Aide</a></li>
- <li><a href="#">A propos</a></li>
-</ul>
+
+<div id="header-wrapper">
+	<div class="container">
+		<div class="row">
+			<div class="12u">
+
+				<header id="header">
+					<h1>
+						<a href="#" id="logo">Tunisiana Customer Manager</a>
+					</h1>
+					<nav id="nav">
+						<a id="home" href="/server/index.html" >Accueil</a>
+						<a id="customer" href="client/add.html">Clients</a> <a id="segments"
+							href="/server/segments.html">Segments</a> <a href="#">Aide</a> <a
+							href="#">A propos</a>
+					</nav>
+				</header>
+
+			</div>
+		</div>
+	</div>
 </div>
-
-
 
 
