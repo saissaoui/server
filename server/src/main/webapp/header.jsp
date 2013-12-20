@@ -4,7 +4,7 @@
 
 <script>
 	$(function() {
-		console.log($(location));
+		console.log($(location).attr('pathname'));
 $("#nav a").each(function(){
 
 	if($(location).attr('pathname')==$(this).attr('href'))
@@ -15,6 +15,7 @@ $("#nav a").each(function(){
 		
 	});
 </script>
+
 <link href="${pageContext.request.contextPath}/css/blitzer/jquery-ui-1.10.3.custom.css" rel="stylesheet">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/skel-noscript.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" />

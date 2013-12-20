@@ -4,7 +4,7 @@
 
 $(function() {
 
-	$("#includedContent").load("../header.html");
+	$("#includedContent").load("../header.jsp");
 	$("#accordion").accordion({
 		heightStyle : "content"
 	});
