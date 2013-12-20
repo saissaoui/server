@@ -4,11 +4,9 @@
 
 <script>
 	$(function() {
-		/* console.log($(location).attr('pathname'));
 		console.log($(location));
-		console.log($("#home").attr('href')); */
 $("#nav a").each(function(){
-	
+
 	if($(location).attr('pathname')==$(this).attr('href'))
 		$(this).addClass("current-page-item");
 	else
@@ -38,7 +36,7 @@ body {
 					</h1>
 					<nav id="nav">
 						<a id="home" href="/server/index.html" >Accueil</a>
-						<a id="customer" href="client/add.html">Clients</a> <a id="segments"
+						<a id="customer" href="/server/client/add.html">Clients</a> <a id="segments"
 							href="/server/segments.html">Segments</a> <a href="#">Aide</a> <a
 							href="#">A propos</a>
 					</nav>
