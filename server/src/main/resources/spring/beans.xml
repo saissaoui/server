@@ -68,8 +68,8 @@ http://cxf.apache.org/schemas/jaxrs.xsd">
 
 	<bean
 		class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer" />
-	<bean class="tn.tunisiana.customer.dao.impl.CustomerDaoImpl" id="cDao">
-
+	<bean class="tn.tunisiana.customer.dao.impl.CustomerDao" id="cDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	<bean id="segmentDao" class="tn.tunisiana.customer.dao.impl.SegmentDao">
 		<property name="sessionFactory" ref="sessionFactory"></property>
@@ -87,6 +87,7 @@ http://cxf.apache.org/schemas/jaxrs.xsd">
 	<bean class="tn.tunisiana.customer.services.impl.CustomerServiceImpl"
 		id="cService">
 		<property name="customerDao" ref="cDao" />
+		<property name="offerDao" ref="offerDao"/>
 	</bean>
 	<bean id="oService"
 		class="tn.tunisiana.customer.services.impl.OfferManagerServiceImpl">

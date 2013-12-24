@@ -16,12 +16,7 @@ $("#nav a").each(function(){
 	});
 </script>
 
-<link href="${pageContext.request.contextPath}/css/blitzer/jquery-ui-1.10.3.custom.css" rel="stylesheet">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/skel-noscript.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style-desktop.css" />
-<script src="${pageContext.request.contextPath}/js/jquery-1.9.1.js"></script>
-<script src="${pageContext.request.contextPath}/js/jquery-ui-1.10.3.custom.js"></script>
+
 <style>
 body {
 	font: 62.5% "Trebuchet MS", sans-serif;

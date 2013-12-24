@@ -18,7 +18,7 @@ public class OfferDao extends GenericDao<Offer>  {
 	public Offer get(int id) {
 		try {
 			List<Offer> list = sessionFactory.getCurrentSession()
-					.createQuery("from Offer where offerId=?")
+					.createQuery("from Offer where idoffer=?")
 					.setParameter(0, id).list();
 			return list.get(0);
 		} catch (Exception e) {

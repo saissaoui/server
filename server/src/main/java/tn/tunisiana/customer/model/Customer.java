@@ -1,7 +1,5 @@
 package tn.tunisiana.customer.model;
 
-
-
 import static javax.persistence.GenerationType.IDENTITY;
 
 import java.util.Date;
@@ -78,14 +76,12 @@ public class Customer implements java.io.Serializable {
 	private String modeUtilisation;
 	@Transient
 	private int distance;
-	
+
 	private List<Offer> offres;
-	
 
 	public Customer() {
 	}
-	
-	
+
 	public Customer(String name, String lastname, Integer age,
 			String gouvernorat, String adress, String country, String civilite,
 			String phone, String email, String idType, String idNumber,
@@ -381,7 +377,7 @@ public class Customer implements java.io.Serializable {
 	public void setRaisonChoix(String raisonChoix) {
 		this.raisonChoix = raisonChoix;
 	}
-	
+
 	public int getDistance() {
 		return distance;
 	}
@@ -390,160 +386,140 @@ public class Customer implements java.io.Serializable {
 		this.distance = distance;
 	}
 
-
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "customer_offer", catalog = "tunisianaDb", joinColumns = { @JoinColumn(name = "idcustomer", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "idoffer", nullable = false, updatable = false) })
-	
 	public List<Offer> getOffres() {
 		return offres;
 	}
-
 
 	public void setOffres(List<Offer> offres) {
 		this.offres = offres;
 	}
 
-
+	@Transient
 	public String getNiveauScolaire() {
 		return niveauScolaire;
 	}
-
 
 	public void setNiveauScolaire(String niveauScolaire) {
 		this.niveauScolaire = niveauScolaire;
 	}
 
-
+	@Transient
 	public String getEtatCivil() {
 		return etatCivil;
 	}
-
 
 	public void setEtatCivil(String etatCivil) {
 		this.etatCivil = etatCivil;
 	}
 
-
+	@Transient
 	public String getRevenu() {
 		return revenu;
 	}
-
 
 	public void setRevenu(String revenu) {
 		this.revenu = revenu;
 	}
 
-
+	@Transient
 	public String getRaisonChangement() {
 		return raisonChangement;
 	}
-
 
 	public void setRaisonChangement(String raisonChangement) {
 		this.raisonChangement = raisonChangement;
 	}
 
-
+	@Transient
 	public String getSituationAchat() {
 		return situationAchat;
 	}
-
 
 	public void setSituationAchat(String situationAchat) {
 		this.situationAchat = situationAchat;
 	}
 
-
+	@Transient
 	public String getAncienOperateur() {
 		return ancienOperateur;
 	}
-
 
 	public void setAncienOperateur(String ancienOperateur) {
 		this.ancienOperateur = ancienOperateur;
 	}
 
-
+	@Transient
 	public String getAncienneOffre() {
 		return ancienneOffre;
 	}
-
 
 	public void setAncienneOffre(String ancienneOffre) {
 		this.ancienneOffre = ancienneOffre;
 	}
 
-
+	@Transient
 	public String getDepenses() {
 		return depenses;
 	}
-
 
 	public void setDepenses(String depenses) {
 		this.depenses = depenses;
 	}
 
-
+	@Transient
 	public String getLienAccompagnant() {
 		return lienAccompagnant;
 	}
-
 
 	public void setLienAccompagnant(String lienAccompagnant) {
 		this.lienAccompagnant = lienAccompagnant;
 	}
 
-
+	@Transient
 	public String getOperateurAccompagnant() {
 		return operateurAccompagnant;
 	}
-
 
 	public void setOperateurAccompagnant(String operateurAccompagnant) {
 		this.operateurAccompagnant = operateurAccompagnant;
 	}
 
-
+	@Transient
 	public String getNiveauScolaireUtilisateur() {
 		return niveauScolaireUtilisateur;
 	}
-
 
 	public void setNiveauScolaireUtilisateur(String niveauScolaireUtilisateur) {
 		this.niveauScolaireUtilisateur = niveauScolaireUtilisateur;
 	}
 
-
+	@Transient
 	public String getEtatCivilUtilisateur() {
 		return etatCivilUtilisateur;
 	}
-
 
 	public void setEtatCivilUtilisateur(String etatCivilUtilisateur) {
 		this.etatCivilUtilisateur = etatCivilUtilisateur;
 	}
 
-
+	@Transient
 	public String getSituationLigne() {
 		return situationLigne;
 	}
-
 
 	public void setSituationLigne(String situationLigne) {
 		this.situationLigne = situationLigne;
 	}
 
-
+	@Transient
 	public String getModeUtilisation() {
 		return modeUtilisation;
 	}
 
-
 	public void setModeUtilisation(String modeUtilisation) {
 		this.modeUtilisation = modeUtilisation;
 	}
-	
-	
 
-	
 }

@@ -18,9 +18,9 @@ public abstract class GenericDao<T> {
 		this.sessionFactory = sessionFactory;
 	}
 
-	public Long add(T object) {
+	public Integer add(T object) {
 
-		return (Long) sessionFactory.getCurrentSession().save(object);
+		return (Integer) sessionFactory.getCurrentSession().save(object);
 	}
 
 	public void update(T object) {
