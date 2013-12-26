@@ -147,6 +147,10 @@ $(function() {
 
 		}
 	});
+	$("#choseOffer").button()
+    .click(function( event ) {
+      console.log("click");
+    });
 	$("#loading").dialog({
 		autoOpen : false,
 		height : 500,
@@ -321,7 +325,7 @@ $(document)
 										customerJson = customerJson.substring(
 												0, customerJson.length - 2)
 												+ '}';
-
+										
 										$
 												.ajax({
 													url : $(this)
@@ -345,6 +349,8 @@ $(document)
 																			"open");
 															$("#no_offers")
 																	.hide();
+															
+															
 															$
 																	.each(
 																			json,
@@ -359,6 +365,8 @@ $(document)
 																										+ item.offerName
 																										+ "</h3><div >"
 																										+ item.description
+																										+"<input type='text' id='offerId' hidden='true' value='"+item.idoffer+"'>"
+																										+"<input id='choseOffer' onclick='addCustomer("+item.idoffer+","+customerJson+");' type='submit' value='Choisir cette offre'>"
 																										+ "</div>");
 
 																			});
@@ -379,7 +387,27 @@ $(document)
 										// lui-même le formulaire
 									});
 				});
-
+function addCustomer(id,customerJson){
+	
+	$.ajax({
+		url : "../rest/customer/add/"+id,
+		type : "POST",
+		data : JSON.stringify(customerJson),
+		dataType : "json",
+		contentType : "json",
+		success : function(json) {
+			alert("Client ajouté avec l'identifiant "+json+" et offre assignée avec succès");
+			$('#cutomerForm').each(function(){this.reset();});
+			$("#dialogOffers").dialog("close");
+			
+		},
+		error: function(){
+			alert("erreur d'ajout de client");
+		}
+	});
+	
+	console.log("add "+id);
+}
 
 $(document).on({
 	ajaxStart : function() {

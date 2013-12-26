@@ -37,11 +37,11 @@ public class CustomerServiceImpl implements ICustomerService {
 	}
 
 	@Override
-	public void addCustomer(Customer customer, int offerId) {
+	public int addCustomer(Customer customer, int offerId) {
 		Offer offer = offerDao.get(offerId);
 		customer.setOffres(new ArrayList<Offer>());
 		customer.getOffres().add(offer);
-		customerDao.add(customer);
+		return customerDao.add(customer);
 		
 	}
 

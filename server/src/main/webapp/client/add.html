@@ -12,7 +12,7 @@
 <script src="../js/jquery-1.9.1.js"></script>
 <script src="../js/jquery-ui-1.10.3.custom.js"></script>
 <script src="../js/add_client.js"></script>
-<script src="../js/config.js"></script>
+
 <script src="../js/skel.min.js"></script>
 <script src="../js/skel-panels.min.js"></script>
 
@@ -750,7 +750,8 @@
 
 
 			</div>
-			<input type="submit" value="Valider Les informations du client">
+			<input  type="submit" value="Valider Les informations du client">
+			<input type="button" value="reinitialiser" onclick="$('#cutomerForm').each(function(){this.reset()});">
 		</form>
 	</div>
 	<div class="modal"><!-- Place at bottom of page -->ff</div>

@@ -21,7 +21,7 @@ public interface ICustomerService {
 	
 	@POST
 	@Path("/add/{offerId}")
-	void addCustomer(Customer customer,@PathParam("offerId") int offerId);
+	int addCustomer(Customer customer,@PathParam("offerId") int offerId);
 	void updateCustomer(Customer customer);
 	void deleteCustomer(int customerId);
 }
