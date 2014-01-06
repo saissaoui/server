@@ -19,24 +19,28 @@
 <style type="text/css">
 </style>
 </head>
-<body >
+<body>
 	<div id="includedContent"></div>
-	<div id="dialogOffers" >
+	<div id="dialogOffers">
 		<div id="offersAccor">
 			<label id="no_offers" hidden="true">Pas d'offres
 				correspondant aux informations renseignées </label>
 		</div>
 	</div>
-	
+
 	<div id="content" class="content" style="overflow: hidden">
 		<h2 class="demoHeaders">Formulaire d'informations Client(Les
 			champs marquées par une * sont obligatoires à saisir)</h2>
 		<h3 id="error" style="color: red" hidden="true">Il existe des
 			erreurs dans les champs marqués en rouge</h3>
 		<form id="cutomerForm" action="../rest/offer/getAll" method="post">
+		
+		<label id="phone_error" style="color: red" hidden="true">Le
+									numéro doit contenir 8 chiffres et commencer par 7 pour un
+									numéro Tunisie Télécom ou par 30 pour un numéro Orange</label>
 			<div id="accordion">
 				<h3>Informations Générales</h3>
-				<div style="height: 300px;">
+				<div>
 					<table>
 						<tr>
 							<td><label for="name">Nom*</label></td>
@@ -309,9 +313,11 @@
 						<tr>
 							<td><label for="phone">Téléphone Fixe</label></td>
 							<td><input name="phone" id="phone"></td>
-							<td><label id="phone_error" style="color: red" hidden="true">Le
-									numéro doit contenir 8 chiffres et commencer par 7 pour un numéro Tunisie Télécom ou par 30 pour un numéro Orange</label></td>
+							
 						</tr>
+						
+						
+					
 						<tr>
 							<td><label for="email">Adresse éléctronique</label></td>
 							<td><input name="email" id="email"></td>
@@ -336,11 +342,13 @@
 
 						</tr>
 						<tr>
-							<td><label>Adresse</label></td>
+							<td><label>Adresse</label> adress<td><input name="adress" id="adress"></td>
+
+
 						</tr>
 						<tr>
-							<td><label for="villeUtilisateur">Ville</label></td>
-							<td><input name="villeUtilisateur" id="villeUtilisateur"></td>
+							<td><label for="ville">Ville</label></td>
+							<td><input name="ville" id="villeUtilisateur"></td>
 							<td><label>Code Postal</label></td>
 							<td><input name="codePostal" id="codePostal"></td>
 							<td><label for="gouvernorat">Gouvernorat*</label></td>
@@ -374,12 +382,12 @@
 							</select></td>
 							<td></td>
 						</tr>
-					</table>
+					<!-- </table>
 
 				</div>
 				<h3>Informations Complèmentaires</h3>
 				<div>
-					<table>
+					<table> -->
 
 						<tr>
 							<td><label>Niveau scolaire</label></td>
@@ -450,8 +458,7 @@
 				<div>
 					<table>
 						<tr>
-							<td><label for="situation_ligne">Situation de la
-									ligne</label></td>
+							<td><label for="situation_ligne">Il s'agit d'une</label></td>
 							<td><select id="situation_ligne" name="situationLigne">
 									<option selected="selected" value="">Choisissez une
 										situation de la ligne</option>
@@ -489,7 +496,7 @@
 							<td><textarea id="raisonChangement"></textarea></td>
 						</tr>
 						<tr>
-							<td><label>Situation d'achat</label></td>
+							<td><label>Vous achetez</label></td>
 
 							<td>
 								<div id="situation_achat">
@@ -522,9 +529,8 @@
 								<div id="raisonChoix">
 									<input type="radio" value="img||qos" id="img"
 										name="raisonChoix"><label for="img">Image ou Qualité
-										de service</label> <input
-										type="radio" value="prix||offre" id="prix" name="raisonChoix"><label
-										for="prix">Prix ou offre</label> 
+										de service</label> <input type="radio" value="prix||offre" id="prix"
+										name="raisonChoix"><label for="prix">Prix ou offre</label> 
 								</div>
 							</td>
 						</tr>
@@ -561,7 +567,7 @@
 									remplir ces champs</label></td>
 						</tr>
 						<tr>
-							<td><label>Lien de parenté</label></td>
+							<td><label  for="lien_parente">Lien de parenté*</label></td>
 							<td><select id="lien_parente" name="lienParente">
 									<option selected="selected" value="">Choisissez un
 										lien de parenté</option>
@@ -572,20 +578,20 @@
 						</tr>
 
 						<tr>
-							<td><label>Nom</label></td>
+							<td><label for="nomUtilisateur">Nom*</label></td>
 							<td><input id="nomUtilisateur"></td>
 						</tr>
 						<tr>
-							<td><label>Prénom</label></td>
+							<td><label for="prenomUtilisateur">Prénom*</label></td>
 							<td><input id="prenomUtilisateur"></td>
 						</tr>
 						<tr>
-							<td><label>Date de naissance</label></td>
+							<td><label for="dateNaissanceUtilisateur">Date de naissance*</label></td>
 							<td><input type="text" id="dateNaissanceUtilisateur"></td>
 						</tr>
 
 						<tr>
-							<td><label>Séxe</label></td>
+							<td><label for="civiliteUtilisateur">Séxe*</label></td>
 							<td>
 
 								<div id="civiliteUtilisateur">
@@ -598,15 +604,120 @@
 						</tr>
 
 						<tr>
-							<td><label>Adresse</label></td>
+							<td><label for="adresseUtilisateur
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							">Adresse*</label></td>
+							<td><input name="adresseUtilisateur" id="adresseUtilisateur"></td>
 						</tr>
 						<tr>
-							<td><label>Ville</label></td>
+							<td><label for="villeUtilisateur">Ville*</label></td>
 							<td><input name="villeUtilisateur" id="villeUtilisateur"></td>
-							<td><label>Code Postal</label></td>
+							<td><label for="codePostalUtilisateur">Code Postal*</label></td>
 							<td><input name="codePostalUtilisateur"
 								id="codePostalUtilisateur"></td>
-							<td><label>Gouvernorat</label></td>
+							<td><label for="gouvernoratUtilisateur">Gouvernorat*</label></td>
 							<td><select id="gouvernoratUtilisateur"
 								name="gouvernoratUtilisateur">
 									<option selected="selected" value="">Choisissez un
@@ -640,8 +751,8 @@
 							<td></td>
 						</tr>
 						<tr>
-							<td><label>Niveau scolaire</label></td>
-							<td><div id="nivscoAccomp">
+							<td><label for="niveauScolaireUtilisateur">Niveau scolaire*</label></td>
+							<td><div id="niveauScolaireUtilisateur">
 									<input type="radio" id="primaireAccomp"
 										name="niveauScolaireUtilisateur"><label
 										for="primaireAccomp">Primaire</label> <input type="radio"
@@ -653,7 +764,7 @@
 								</div></td>
 						</tr>
 						<tr>
-							<td><label>Profession</label></td>
+							<td><label for="professionUtilisateur">Profession*</label></td>
 							<td><select name="professionUtilisateur"
 								id="professionUtilisateur" name="professionUtilisateur">
 									<option selected="selected" value="">Choisissez une
@@ -673,9 +784,9 @@
 
 						</tr>
 						<tr>
-							<td><label>Etat civil</label></td>
+							<td><label for="etatCivilUtilisateur">Etat civil*</label></td>
 							<td>
-								<div id="etatradioAccomp">
+								<div id="etatCivilUtilisateur">
 									<input type="radio" id="celibAccomp"
 										name="etatCivilUtilisateur"><label for="celibAccomp">célibataire</label>
 									<input type="radio" id="marieAccomp"
@@ -689,8 +800,8 @@
 						</tr>
 
 						<tr>
-							<td><label>Revenu</label></td>
-							<td><select>
+							<td><label for="revenuUtilisateur">Revenu*</label></td>
+							<td><select id="revenuUtilisateur">
 									<option selected="selected" value="">Choisissez une
 										plage de revenu</option>
 									<option>moins de 300</option>
@@ -704,6 +815,7 @@
 
 						</tr>
 						<tr>
+					
 					</table>
 
 
@@ -750,10 +862,12 @@
 
 
 			</div>
-			<input  type="submit" value="Valider Les informations du client">
-			<input type="button" value="reinitialiser" onclick="$('#cutomerForm').each(function(){this.reset()});">
+			<input type="submit" value="Valider Les informations du client">
+			<input type="button" value="reinitialiser"
+				onclick="$('#cutomerForm').each(function(){this.reset()});">
 		</form>
 	</div>
-	<div class="modal"><!-- Place at bottom of page -->ff</div>
+	<div class="modal">
+		<!-- Place at bottom of page -->ff</div>
 </body>
 </html>
