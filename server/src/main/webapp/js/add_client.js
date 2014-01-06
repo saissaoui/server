@@ -6,7 +6,9 @@ $(function() {
 
 	$("#includedContent").load("../header.jsp");
 	$("#accordion").accordion({
-		heightStyle : "content"
+		heightStyle : "content",
+		collapsible : true,
+		autoHeight : false
 	});
 
 	$("#raisonAchat").change(function() {
@@ -38,7 +40,7 @@ $(function() {
 			$('#cin').hide();
 		}
 	});
-	$("#nivscoAccomp").buttonset();
+	$("#niveauScolaireUtilisateur").buttonset();
 	$("#situation_achat").buttonset();
 	$("#situation_achat").change(function() {
 
@@ -50,7 +52,7 @@ $(function() {
 
 		}
 	});
-	$("#etatradioAccomp").buttonset();
+	$("#etatCivilUtilisateur").buttonset();
 	$("#mode_utilisation").buttonset();
 	$("#situation_ligne").change(function() {
 		if (this.value === "rep") {
@@ -147,10 +149,9 @@ $(function() {
 
 		}
 	});
-	$("#choseOffer").button()
-    .click(function( event ) {
-      console.log("click");
-    });
+	$("#choseOffer").button().click(function(event) {
+		console.log("click");
+	});
 	$("#loading").dialog({
 		autoOpen : false,
 		height : 500,
@@ -207,8 +208,9 @@ $(document)
 													});
 
 										if (!($('#phone').val()
-												.match(/^7\d{7}/))&&!($('#phone').val()
-														.match(/^30\d{6}/))) {
+												.match(/^7\d{7}$/))
+												&& !($('#phone').val()
+														.match(/^3\d{7}$/))) {
 											valid = false;
 											$("label[for='phone']").css({
 												color : "red"
@@ -221,6 +223,26 @@ $(document)
 											});
 
 											$('#phone_error').hide();
+										}
+										console.log($('#email').val()
+												.match(/\S+@\S+\.\S+/));
+										console.log($('#email').val());
+										if (!($('#email').val()
+												.match(/\S+@\S+\.\S+/))
+												) {
+											
+											valid = false;
+											$("label[for='email']").css({
+												color : "red"
+											});
+
+											$('#email_error').show();
+										} else {
+											$("label[for='email']").css({
+												color : "green"
+											});
+
+											$('#email_error').hide();
 										}
 
 										if (jQuery
@@ -258,20 +280,164 @@ $(document)
 												color : "green"
 											});
 										}
-										if ($("#raisonAchat").val() == 8) {
-											if (jQuery
-													.trim($(
-															'input[name=autreOperateur]:radio:checked')
-															.val()).length == 0) {
+										
+										console.log($("#raisonAchat").val());
+										if ($("#raisonAchat").val() == 9) {
+											if (jQuery.trim($("#lien_parente")
+													.val()).length == 0) {
 												valid = false;
-												$(
-														"label[for='autreOperateurRadio']")
+												$("label[for='lien_parente']")
 														.css({
 															color : "red"
 														});
 											} else {
-												$(
-														"label[for='autreOperateurRadio']")
+												$("label[for='lien_parente']")
+														.css({
+															color : "green"
+														});
+											}
+											if (jQuery.trim($("#nomUtilisateur")
+													.val()).length == 0) {
+												valid = false;
+												$("label[for='nomUtilisateur']")
+														.css({
+															color : "red"
+														});
+											} else {
+												$("label[for='nomUtilisateur']")
+														.css({
+															color : "green"
+														});
+											}
+											if (jQuery.trim($("#prenomUtilisateur")
+													.val()).length == 0) {
+												valid = false;
+												$("label[for='prenomUtilisateur']")
+														.css({
+															color : "red"
+														});
+											} else {
+												$("label[for='prenomUtilisateur']")
+														.css({
+															color : "green"
+														});
+											}
+											if (jQuery.trim($("#dateNaissanceUtilisateur")
+													.val()).length == 0) {
+												valid = false;
+												$("label[for='dateNaissanceUtilisateur']")
+														.css({
+															color : "red"
+														});
+											} else {
+												$("label[for='dateNaissanceUtilisateur']")
+														.css({
+															color : "green"
+														});
+											}
+											if (jQuery.trim($(
+											'input[name=civiliteUtilisateur]:radio:checked')
+													.val()).length == 0) {
+												valid = false;
+												$("label[for='civiliteUtilisateur']")
+														.css({
+															color : "red"
+														});
+											} else {
+												$("label[for='civiliteUtilisateur']")
+														.css({
+															color : "green"
+														});
+											}
+											if (jQuery.trim($("#villeUtilisateur")
+													.val()).length == 0) {
+												valid = false;
+												$("label[for='villeUtilisateur']")
+														.css({
+															color : "red"
+														});
+											} else {
+												$("label[for='villeUtilisateur']")
+														.css({
+															color : "green"
+														});
+											}
+											if (jQuery.trim($("#codePostalUtilisateur")
+													.val()).length == 0) {
+												valid = false;
+												$("label[for='codePostalUtilisateur']")
+														.css({
+															color : "red"
+														});
+											} else {
+												$("label[for='codePostalUtilisateur']")
+														.css({
+															color : "green"
+														});
+											}
+											if (jQuery.trim($("#gouvernoratUtilisateur")
+													.val()).length == 0) {
+												valid = false;
+												$("label[for='gouvernoratUtilisateur']")
+														.css({
+															color : "red"
+														});
+											} else {
+												$("label[for='gouvernoratUtilisateur']")
+														.css({
+															color : "green"
+														});
+											}
+											if (jQuery.trim($(
+											'input[name=niveauScolaireUtilisateur]:radio:checked')
+													.val()).length == 0) {
+												valid = false;
+												$("label[for='niveauScolaireUtilisateur']")
+														.css({
+															color : "red"
+														});
+											} else {
+												$("label[for='niveauScolaireUtilisateur']")
+														.css({
+															color : "green"
+														});
+											}
+											if (jQuery.trim($("#professionUtilisateur")
+													.val()).length == 0) {
+												valid = false;
+												$("label[for='professionUtilisateur']")
+														.css({
+															color : "red"
+														});
+											} else {
+												$("label[for='professionUtilisateur']")
+														.css({
+															color : "green"
+														});
+											}
+											if (jQuery.trim($(
+											'input[name=etatCivilUtilisateur]:radio:checked')
+													.val()).length == 0) {
+												valid = false;
+												$("label[for='etatCivilUtilisateur']")
+														.css({
+															color : "red"
+														});
+											} else {
+												$("label[for='etatCivilUtilisateur']")
+														.css({
+															color : "green"
+														});
+											}
+											if (jQuery.trim($("#revenuUtilisateur")
+													.val()).length == 0) {
+												valid = false;
+												$("label[for='revenuUtilisateur']")
+														.css({
+															color : "red"
+														});
+											} else {
+												$("label[for='revenuUtilisateur']")
 														.css({
 															color : "green"
 														});
@@ -325,7 +491,7 @@ $(document)
 										customerJson = customerJson.substring(
 												0, customerJson.length - 2)
 												+ '}';
-										
+
 										$
 												.ajax({
 													url : $(this)
@@ -349,8 +515,7 @@ $(document)
 																			"open");
 															$("#no_offers")
 																	.hide();
-															
-															
+
 															$
 																	.each(
 																			json,
@@ -365,8 +530,14 @@ $(document)
 																										+ item.offerName
 																										+ "</h3><div >"
 																										+ item.description
-																										+"<input type='text' id='offerId' hidden='true' value='"+item.idoffer+"'>"
-																										+"<input id='choseOffer' onclick='addCustomer("+item.idoffer+","+customerJson+");' type='submit' value='Choisir cette offre'>"
+																										+ "<input type='text' id='offerId' hidden='true' value='"
+																										+ item.idoffer
+																										+ "'>"
+																										+ "<input id='choseOffer' onclick='addCustomer("
+																										+ item.idoffer
+																										+ ","
+																										+ customerJson
+																										+ ");' type='submit' value='Choisir cette offre'>"
 																										+ "</div>");
 
 																			});
@@ -387,34 +558,38 @@ $(document)
 										// lui-même le formulaire
 									});
 				});
-function addCustomer(id,customerJson){
-	
+function addCustomer(id, customerJson) {
+
 	$.ajax({
-		url : "../rest/customer/add/"+id,
+		url : "../rest/customer/add/" + id,
 		type : "POST",
 		data : JSON.stringify(customerJson),
 		dataType : "json",
 		contentType : "json",
 		success : function(json) {
-			alert("Client ajouté avec l'identifiant "+json+" et offre assignée avec succès");
-			$('#cutomerForm').each(function(){this.reset();});
+			alert("Client ajouté avec l'identifiant " + json
+					+ " et offre assignée avec succès");
+			$('#cutomerForm').each(function() {
+				this.reset();
+			});
 			$("#dialogOffers").dialog("close");
-			
+
 		},
-		error: function(){
+		error : function() {
 			alert("erreur d'ajout de client");
 		}
 	});
-	
-	console.log("add "+id);
+
+	console.log("add " + id);
 }
 
 $(document).on({
 	ajaxStart : function() {
 		console.log("start");
-		$(".modal").css("display","block");
+		$(".modal").css("display", "block");
 	},
 	ajaxStop : function() {
-		console.log("stop");$(".modal").css("display","none");
+		console.log("stop");
+		$(".modal").css("display", "none");
 	}
 });

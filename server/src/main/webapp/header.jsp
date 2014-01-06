@@ -42,6 +42,7 @@ body {
 							href="${pageContext.request.contextPath}/segments.html">Segments</a> <a href="#">Aide</a> <a
 							href="#">A propos</a>
 					</nav>
+					
 				</header>
 
 			</div>
