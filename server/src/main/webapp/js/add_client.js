@@ -208,9 +208,11 @@ $(document)
 													});
 
 										if (!($('#phone').val()
+
 												.match(/^7\d{7}$/))
 												&& !($('#phone').val()
 														.match(/^3\d{7}$/))) {
+
 											valid = false;
 											$("label[for='phone']").css({
 												color : "red"
