@@ -43,6 +43,7 @@ public class Customer implements java.io.Serializable {
 	private String revenu;
 	private String gouvernorat;
 	private String adress;
+	private String city;
 	private String country;
 	private String civilite;
 	private String phone;
@@ -62,6 +63,7 @@ public class Customer implements java.io.Serializable {
 	private Date dateNaissanceUtilisateur;
 	private String professionUtilisateur;
 	private Date dateNaissance;
+	private String adresseUtilisateur;
 	private String villeUtilisateur;
 	private Long codePostalUtilisateur;
 	private Long codePostal;
@@ -168,6 +170,14 @@ public class Customer implements java.io.Serializable {
 		this.gouvernorat = gouvernorat;
 	}
 
+	public String getAdresseUtilisateur() {
+		return adresseUtilisateur;
+	}
+
+	public void setAdresseUtilisateur(String adresseUtilisateur) {
+		this.adresseUtilisateur = adresseUtilisateur;
+	}
+
 	@Column(name = "adress", length = 45)
 	public String getAdress() {
 		return this.adress;
@@ -220,6 +230,14 @@ public class Customer implements java.io.Serializable {
 
 	public void setIdType(String idType) {
 		this.idType = idType;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
 	}
 
 	@Column(name = "id_number", length = 45)

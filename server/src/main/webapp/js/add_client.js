@@ -194,6 +194,17 @@ $(document)
 												color : "green"
 											});
 										}
+										if (jQuery.trim($("#lastname").val()).length == 0) {
+											valid = false;
+											$("label[for='lastname']").css({
+												color : "red"
+											});
+										} else {
+											$("label[for='lastname']").css({
+												color : "green"
+											});
+										}
+
 										if (jQuery.trim($("#dateNaissance")
 												.val()).length == 0) {
 											valid = false;
@@ -209,7 +220,7 @@ $(document)
 
 										if (!($('#phone').val()
 
-												.match(/^7\d{7}$/))
+										.match(/^7\d{7}$/))
 												&& !($('#phone').val()
 														.match(/^3\d{7}$/))) {
 
@@ -226,13 +237,10 @@ $(document)
 
 											$('#phone_error').hide();
 										}
-										console.log($('#email').val()
-												.match(/\S+@\S+\.\S+/));
-										console.log($('#email').val());
+
 										if (!($('#email').val()
-												.match(/\S+@\S+\.\S+/))
-												) {
-											
+												.match(/\S+@\S+\.\S+/))) {
+
 											valid = false;
 											$("label[for='email']").css({
 												color : "red"
@@ -245,6 +253,124 @@ $(document)
 											});
 
 											$('#email_error').hide();
+										}
+
+										if (jQuery.trim($('#idType').val()) == "cin") {
+											if (!$('#idNumber').val().match(
+													/^\d{8}$/)) {
+
+												valid = false;
+												$("label[for='idNumber']").css(
+														{
+															color : "red"
+														});
+												$('#idnumber_error').show();
+											} else {
+												$("label[for='idNumber']").css(
+														{
+															color : "green"
+														});
+
+												
+												$('#idnumber_error').hide();
+											}
+										} else {
+											$("label[for='idNumber']").css({
+												color : "black"
+											});
+
+										}
+
+										if (jQuery.trim($("#ville").val()).length == 0) {
+											valid = false;
+											$("label[for='ville']").css({
+												color : "red"
+											});
+										} else {
+											$("label[for='ville']").css({
+												color : "green"
+											});
+										}
+
+										if (jQuery.trim($("#adress").val()).length == 0) {
+											valid = false;
+											$("label[for='adress']").css({
+												color : "red"
+											});
+										} else {
+											$("label[for='adress']").css({
+												color : "green"
+											});
+										}
+										if (jQuery.trim($("#codePostal").val()).length == 0) {
+											valid = false;
+											$("label[for='codePostal']").css({
+												color : "red"
+											});
+										} else {
+											$("label[for='codePostal']").css({
+												color : "green"
+											});
+										}
+
+										if (jQuery.trim($("#profession").val()).length == 0) {
+											valid = false;
+											$("label[for='profession']").css({
+												color : "red"
+											});
+										} else {
+											$("label[for='profession']").css({
+												color : "green"
+											});
+										}
+										if (jQuery.trim($("#revenu").val()).length == 0) {
+											valid = false;
+											$("label[for='revenu']").css({
+												color : "red"
+											});
+										} else {
+											$("label[for='revenu']").css({
+												color : "green"
+											});
+										}
+										console.log($("#situation_ligne")
+												.val());
+										if (jQuery.trim($("#situation_ligne")
+												.val()).length == 0) {
+											valid = false;
+											$("label[for='situation_ligne']")
+													.css({
+														color : "red"
+													});
+										} else {
+											$("label[for='situation_ligne']")
+													.css({
+														color : "green"
+													});
+											
+											if (jQuery.trim($(
+											"#situation_ligne").val()) == "second") {
+
+										if (jQuery
+												.trim($(
+														'input[name=autreOperateurRadio]:radio:checked')
+														.val()).length == 0) {
+											valid = false;
+											$(
+													"label[for='autreOperateurRadio']")
+													.css({
+														color : "red"
+													});
+										} else {
+											$(
+													"label[for='autreOperateurRadio']")
+													.css({
+														color : "green"
+													});
+										}
+
+									}
+											
 										}
 
 										if (jQuery
@@ -282,8 +408,7 @@ $(document)
 												color : "green"
 											});
 										}
-										
-										console.log($("#raisonAchat").val());
+
 										if ($("#raisonAchat").val() == 9) {
 											if (jQuery.trim($("#lien_parente")
 													.val()).length == 0) {
@@ -298,8 +423,9 @@ $(document)
 															color : "green"
 														});
 											}
-											if (jQuery.trim($("#nomUtilisateur")
-													.val()).length == 0) {
+											if (jQuery
+													.trim($("#nomUtilisateur")
+															.val()).length == 0) {
 												valid = false;
 												$("label[for='nomUtilisateur']")
 														.css({
@@ -311,135 +437,171 @@ $(document)
 															color : "green"
 														});
 											}
-											if (jQuery.trim($("#prenomUtilisateur")
-													.val()).length == 0) {
+											if (jQuery
+													.trim($(
+															"#prenomUtilisateur")
+															.val()).length == 0) {
 												valid = false;
-												$("label[for='prenomUtilisateur']")
+												$(
+														"label[for='prenomUtilisateur']")
 														.css({
 															color : "red"
 														});
 											} else {
-												$("label[for='prenomUtilisateur']")
+												$(
+														"label[for='prenomUtilisateur']")
 														.css({
 															color : "green"
 														});
 											}
-											if (jQuery.trim($("#dateNaissanceUtilisateur")
-													.val()).length == 0) {
+											if (jQuery
+													.trim($(
+															"#dateNaissanceUtilisateur")
+															.val()).length == 0) {
 												valid = false;
-												$("label[for='dateNaissanceUtilisateur']")
+												$(
+														"label[for='dateNaissanceUtilisateur']")
 														.css({
 															color : "red"
 														});
 											} else {
-												$("label[for='dateNaissanceUtilisateur']")
+												$(
+														"label[for='dateNaissanceUtilisateur']")
+														.css({
+															color : "green"
+														});
+											}
+											if (jQuery
+													.trim($(
+															'input[name=civiliteUtilisateur]:radio:checked')
+															.val()).length == 0) {
+												valid = false;
+												$(
+														"label[for='civiliteUtilisateur']")
+														.css({
+															color : "red"
+														});
+											} else {
+												$(
+														"label[for='civiliteUtilisateur']")
+														.css({
+															color : "green"
+														});
+											}
+											console.log($("#situation_ligne")
+													.val());
+											
+
+											if (jQuery.trim($(
+													"#villeUtilisateur").val()).length == 0) {
+												valid = false;
+												$(
+														"label[for='villeUtilisateur']")
+														.css({
+															color : "red"
+														});
+											} else {
+												$(
+														"label[for='villeUtilisateur']")
 														.css({
 															color : "green"
 														});
 											}
 											if (jQuery.trim($(
-											'input[name=civiliteUtilisateur]:radio:checked')
+													"#codePostalUtilisateur")
 													.val()).length == 0) {
 												valid = false;
-												$("label[for='civiliteUtilisateur']")
+												$(
+														"label[for='codePostalUtilisateur']")
 														.css({
 															color : "red"
 														});
 											} else {
-												$("label[for='civiliteUtilisateur']")
-														.css({
-															color : "green"
-														});
-											}
-											if (jQuery.trim($("#villeUtilisateur")
-													.val()).length == 0) {
-												valid = false;
-												$("label[for='villeUtilisateur']")
-														.css({
-															color : "red"
-														});
-											} else {
-												$("label[for='villeUtilisateur']")
-														.css({
-															color : "green"
-														});
-											}
-											if (jQuery.trim($("#codePostalUtilisateur")
-													.val()).length == 0) {
-												valid = false;
-												$("label[for='codePostalUtilisateur']")
-														.css({
-															color : "red"
-														});
-											} else {
-												$("label[for='codePostalUtilisateur']")
-														.css({
-															color : "green"
-														});
-											}
-											if (jQuery.trim($("#gouvernoratUtilisateur")
-													.val()).length == 0) {
-												valid = false;
-												$("label[for='gouvernoratUtilisateur']")
-														.css({
-															color : "red"
-														});
-											} else {
-												$("label[for='gouvernoratUtilisateur']")
+												$(
+														"label[for='codePostalUtilisateur']")
 														.css({
 															color : "green"
 														});
 											}
 											if (jQuery.trim($(
-											'input[name=niveauScolaireUtilisateur]:radio:checked')
+													"#gouvernoratUtilisateur")
 													.val()).length == 0) {
 												valid = false;
-												$("label[for='niveauScolaireUtilisateur']")
+												$(
+														"label[for='gouvernoratUtilisateur']")
 														.css({
 															color : "red"
 														});
 											} else {
-												$("label[for='niveauScolaireUtilisateur']")
+												$(
+														"label[for='gouvernoratUtilisateur']")
 														.css({
 															color : "green"
 														});
 											}
-											if (jQuery.trim($("#professionUtilisateur")
-													.val()).length == 0) {
+											if (jQuery
+													.trim($(
+															'input[name=niveauScolaireUtilisateur]:radio:checked')
+															.val()).length == 0) {
 												valid = false;
-												$("label[for='professionUtilisateur']")
+												$(
+														"label[for='niveauScolaireUtilisateur']")
 														.css({
 															color : "red"
 														});
 											} else {
-												$("label[for='professionUtilisateur']")
+												$(
+														"label[for='niveauScolaireUtilisateur']")
 														.css({
 															color : "green"
 														});
 											}
 											if (jQuery.trim($(
-											'input[name=etatCivilUtilisateur]:radio:checked')
+													"#professionUtilisateur")
 													.val()).length == 0) {
 												valid = false;
-												$("label[for='etatCivilUtilisateur']")
+												$(
+														"label[for='professionUtilisateur']")
 														.css({
 															color : "red"
 														});
 											} else {
-												$("label[for='etatCivilUtilisateur']")
+												$(
+														"label[for='professionUtilisateur']")
 														.css({
 															color : "green"
 														});
 											}
-											if (jQuery.trim($("#revenuUtilisateur")
-													.val()).length == 0) {
+											if (jQuery
+													.trim($(
+															'input[name=etatCivilUtilisateur]:radio:checked')
+															.val()).length == 0) {
 												valid = false;
-												$("label[for='revenuUtilisateur']")
+												$(
+														"label[for='etatCivilUtilisateur']")
 														.css({
 															color : "red"
 														});
 											} else {
-												$("label[for='revenuUtilisateur']")
+												$(
+														"label[for='etatCivilUtilisateur']")
+														.css({
+															color : "green"
+														});
+											}
+											if (jQuery
+													.trim($(
+															"#revenuUtilisateur")
+															.val()).length == 0) {
+												valid = false;
+												$(
+														"label[for='revenuUtilisateur']")
+														.css({
+															color : "red"
+														});
+											} else {
+												$(
+														"label[for='revenuUtilisateur']")
 														.css({
 															color : "green"
 														});

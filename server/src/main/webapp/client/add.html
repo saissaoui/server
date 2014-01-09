@@ -31,15 +31,19 @@
 	<div id="content" class="content" style="overflow: hidden">
 		<h2 class="demoHeaders">Formulaire d'informations Client(Les
 			champs marquées par une * sont obligatoires à saisir)</h2>
-		<h3 id="error" style="color: red" hidden="true">Il existe des
-			erreurs dans les champs marqués en rouge</h3>
+		<div id="errors">
+			<h3 id="error" style="color: red" hidden="true">Il existe des
+				erreurs dans les champs marqués en rouge</h3>
+			<label id="idnumber_error" style="color: red" hidden="true">
+				Il faut saisir un numero de CIN a 8 chiffres</label><br> <label id="phone_error"
+				style="color: red" hidden="true">Le numéro doit contenir 8
+				chiffres et commencer par 7 pour un numéro Tunisie Télécom ou par 3
+				pour un numéro Orange</label><br> <label id="email_error"
+				style="color: red" hidden="true"> veuillez verifier
+				l'adresse email entrée</label>
+		</div>
 		<form id="cutomerForm" action="../rest/offer/getAll" method="post">
 
-			<label id="phone_error" style="color: red" hidden="true">Le
-				numéro doit contenir 8 chiffres et commencer par 7 pour un numéro
-				Tunisie Télécom ou par 3 pour un numéro Orange</label><br> <label
-				id="email_error" style="color: red" hidden="true"> veuillez
-				verifier l'adresse email entrée</label>
 			<div id="accordion">
 				<h3>Informations Générales</h3>
 				<div>
@@ -305,9 +309,9 @@
 							<td>
 
 								<div id="civilite">
-									<input type="radio" id="homme" value="homme" name="civilite"><label
+									<input type="radio" id="homme" value="homme"  checked="checked" name="civilite"><label
 										for="homme">homme</label> <input type="radio" id="femme"
-										name="civilite" value="femme" checked="checked"><label
+										name="civilite" value="femme"><label
 										for="femme">Femme</label>
 								</div>
 							</td>
@@ -327,8 +331,7 @@
 						<tr>
 							<td><label for="idType">Pièce d'identité*</label></td>
 							<td><select id="idType" name="idType">
-									<option value="" selected="selected">Choisissez un
-										type de pièce d'identité</option>
+									
 									<option id="cin" value="cin">Carte d'identité
 										Nationale</option>
 									<option id="pass" value="pass" hidden="true">Passeport</option>
@@ -344,15 +347,15 @@
 
 						</tr>
 						<tr>
-							<td><label>Adresse*</label>
+							<td><label for="adress">Adresse*</label>
 							<td><input name="adress" id="adress"></td>
 
 
 						</tr>
 						<tr>
 							<td><label for="ville">Ville*</label></td>
-							<td><input name="ville" id="villeUtilisateur"></td>
-							<td><label>Code Postal*</label></td>
+							<td><input name="city" id="ville"></td>
+							<td><label for="codePostal">Code Postal*</label></td>
 							<td><input name="codePostal" id="codePostal"></td>
 							<td><label for="gouvernorat">Gouvernorat*</label></td>
 							<td><select id="gouvernorat" name="gouvernorat">
@@ -397,7 +400,7 @@
 							<td><div id="nivsco">
 									<input type="radio" id="primaire" name="niveauScolaire"><label
 										for="primaire">Primaire</label> <input type="radio"
-										id="secondaire" name="niveauScolaire"><label
+										id="secondaire" name="niveauScolaire" checked="checked"><label
 										for="secondaire">Secondaire</label> <input type="radio"
 										id="superieur" name="niveauScolaire"><label
 										for="superieur">Superieur</label>
@@ -405,7 +408,7 @@
 								</div></td>
 						</tr>
 						<tr>
-							<td><label>Profession*</label></td>
+							<td><label for="profession">Profession*</label></td>
 							<td><select id="profession" name="profession">
 									<option selected="selected" value="">Choisissez une
 										profession</option>
@@ -428,7 +431,7 @@
 							<td><label>Etat civil*</label></td>
 							<td>
 								<div id="etatradio">
-									<input type="radio" id="celib" name="etatCivil"><label
+									<input type="radio" id="celib" name="etatCivil" checked="checked"><label
 										for="celib">célibataire</label> <input type="radio" id="marie"
 										name="etatCivil"><label for="marie">Marié(e)</label> <input
 										type="radio" id="divorce" name="etatCivil"><label
@@ -439,8 +442,8 @@
 						</tr>
 
 						<tr>
-							<td><label>Revenu*</label></td>
-							<td><select>
+							<td><label for="revenu">Revenu*</label></td>
+							<td><select id="revenu">
 									<option selected="selected" value="">Choisissez une
 										plage de revenu</option>
 									<option>moins de 300</option>
@@ -503,7 +506,7 @@
 
 							<td>
 								<div id="situation_achat">
-									<input type="radio" id="presse" name="situationAchat"><label
+									<input type="radio" id="presse" name="situationAchat" checked="checked"><label
 										for="presse">Quand vous êtes pressé</label> <input
 										type="radio" id="pas_presse" name="situationAchat"><label
 										for="pas_presse">Quand vous n’êtes pas pressé</label>
@@ -517,7 +520,7 @@
 
 							<td>
 								<div id="mode_utilisation">
-									<input type="radio" id="local" name="modeUtilisation"><label
+									<input type="radio" id="local" name="modeUtilisation" checked="checked"><label
 										for="local">Local</label> <input type="radio" id="inter"
 										name="modeUtilisation"><label for="inter">International</label>
 
