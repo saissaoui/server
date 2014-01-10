@@ -76,7 +76,7 @@ public class Customer implements java.io.Serializable {
 	private String raisonChoix;
 	private String situationLigne;
 	private String modeUtilisation;
-	@Transient
+	
 	private int distance;
 
 	private List<Offer> offres;
@@ -169,7 +169,7 @@ public class Customer implements java.io.Serializable {
 	public void setGouvernorat(String gouvernorat) {
 		this.gouvernorat = gouvernorat;
 	}
-
+	@Column(name = "adresse_utilisateur", length = 100)
 	public String getAdresseUtilisateur() {
 		return adresseUtilisateur;
 	}
@@ -414,7 +414,7 @@ public class Customer implements java.io.Serializable {
 		this.offres = offres;
 	}
 
-	@Transient
+	
 	public String getNiveauScolaire() {
 		return niveauScolaire;
 	}
@@ -423,7 +423,7 @@ public class Customer implements java.io.Serializable {
 		this.niveauScolaire = niveauScolaire;
 	}
 
-	@Transient
+	
 	public String getEtatCivil() {
 		return etatCivil;
 	}
@@ -432,7 +432,7 @@ public class Customer implements java.io.Serializable {
 		this.etatCivil = etatCivil;
 	}
 
-	@Transient
+	
 	public String getRevenu() {
 		return revenu;
 	}
@@ -441,7 +441,7 @@ public class Customer implements java.io.Serializable {
 		this.revenu = revenu;
 	}
 
-	@Transient
+	
 	public String getRaisonChangement() {
 		return raisonChangement;
 	}
@@ -450,7 +450,7 @@ public class Customer implements java.io.Serializable {
 		this.raisonChangement = raisonChangement;
 	}
 
-	@Transient
+	
 	public String getSituationAchat() {
 		return situationAchat;
 	}
@@ -459,7 +459,7 @@ public class Customer implements java.io.Serializable {
 		this.situationAchat = situationAchat;
 	}
 
-	@Transient
+	
 	public String getAncienOperateur() {
 		return ancienOperateur;
 	}
@@ -468,7 +468,7 @@ public class Customer implements java.io.Serializable {
 		this.ancienOperateur = ancienOperateur;
 	}
 
-	@Transient
+	
 	public String getAncienneOffre() {
 		return ancienneOffre;
 	}
@@ -477,7 +477,7 @@ public class Customer implements java.io.Serializable {
 		this.ancienneOffre = ancienneOffre;
 	}
 
-	@Transient
+	
 	public String getDepenses() {
 		return depenses;
 	}
@@ -486,7 +486,7 @@ public class Customer implements java.io.Serializable {
 		this.depenses = depenses;
 	}
 
-	@Transient
+	
 	public String getLienAccompagnant() {
 		return lienAccompagnant;
 	}
@@ -495,7 +495,7 @@ public class Customer implements java.io.Serializable {
 		this.lienAccompagnant = lienAccompagnant;
 	}
 
-	@Transient
+	
 	public String getOperateurAccompagnant() {
 		return operateurAccompagnant;
 	}
@@ -504,7 +504,7 @@ public class Customer implements java.io.Serializable {
 		this.operateurAccompagnant = operateurAccompagnant;
 	}
 
-	@Transient
+	
 	public String getNiveauScolaireUtilisateur() {
 		return niveauScolaireUtilisateur;
 	}
@@ -513,7 +513,7 @@ public class Customer implements java.io.Serializable {
 		this.niveauScolaireUtilisateur = niveauScolaireUtilisateur;
 	}
 
-	@Transient
+	
 	public String getEtatCivilUtilisateur() {
 		return etatCivilUtilisateur;
 	}
@@ -522,7 +522,7 @@ public class Customer implements java.io.Serializable {
 		this.etatCivilUtilisateur = etatCivilUtilisateur;
 	}
 
-	@Transient
+	
 	public String getSituationLigne() {
 		return situationLigne;
 	}
@@ -531,7 +531,7 @@ public class Customer implements java.io.Serializable {
 		this.situationLigne = situationLigne;
 	}
 
-	@Transient
+	
 	public String getModeUtilisation() {
 		return modeUtilisation;
 	}

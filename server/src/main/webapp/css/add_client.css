@@ -53,5 +53,10 @@
                 no-repeat;
 }
 
+#cutomerForm label{
+	
+	margin-bottom:  10px;
+}
+
 /* When the body has the loading class, we turn
    the scrollbar off with overflow:hidden */

@@ -191,7 +191,7 @@ $(document)
 											});
 										} else {
 											$("label[for='name']").css({
-												color : "green"
+												color : "black"
 											});
 										}
 										if (jQuery.trim($("#lastname").val()).length == 0) {
@@ -201,7 +201,7 @@ $(document)
 											});
 										} else {
 											$("label[for='lastname']").css({
-												color : "green"
+												color : "black"
 											});
 										}
 
@@ -215,7 +215,7 @@ $(document)
 										} else
 											$("label[for='dateNaissance']")
 													.css({
-														color : "green"
+														color : "black"
 													});
 
 										if (!($('#phone').val()
@@ -232,7 +232,7 @@ $(document)
 											$('#phone_error').show();
 										} else {
 											$("label[for='phone']").css({
-												color : "green"
+												color : "black"
 											});
 
 											$('#phone_error').hide();
@@ -249,7 +249,7 @@ $(document)
 											$('#email_error').show();
 										} else {
 											$("label[for='email']").css({
-												color : "green"
+												color : "black"
 											});
 
 											$('#email_error').hide();
@@ -268,7 +268,7 @@ $(document)
 											} else {
 												$("label[for='idNumber']").css(
 														{
-															color : "green"
+															color : "black"
 														});
 
 												
@@ -288,7 +288,7 @@ $(document)
 											});
 										} else {
 											$("label[for='ville']").css({
-												color : "green"
+												color : "black"
 											});
 										}
 
@@ -299,7 +299,7 @@ $(document)
 											});
 										} else {
 											$("label[for='adress']").css({
-												color : "green"
+												color : "black"
 											});
 										}
 										if (jQuery.trim($("#codePostal").val()).length == 0) {
@@ -309,7 +309,7 @@ $(document)
 											});
 										} else {
 											$("label[for='codePostal']").css({
-												color : "green"
+												color : "black"
 											});
 										}
 
@@ -320,7 +320,7 @@ $(document)
 											});
 										} else {
 											$("label[for='profession']").css({
-												color : "green"
+												color : "black"
 											});
 										}
 										if (jQuery.trim($("#revenu").val()).length == 0) {
@@ -330,7 +330,7 @@ $(document)
 											});
 										} else {
 											$("label[for='revenu']").css({
-												color : "green"
+												color : "black"
 											});
 										}
 										console.log($("#situation_ligne")
@@ -345,15 +345,18 @@ $(document)
 										} else {
 											$("label[for='situation_ligne']")
 													.css({
-														color : "green"
+														color : "black"
 													});
 											
 											if (jQuery.trim($(
 											"#situation_ligne").val()) == "second") {
-
+												console.log(jQuery
+												.trim($(
+														'input[name=ancienOperateur]:radio:checked')
+														.val()).length);
 										if (jQuery
 												.trim($(
-														'input[name=autreOperateurRadio]:radio:checked')
+														'input[name=ancienOperateur]:radio:checked')
 														.val()).length == 0) {
 											valid = false;
 											$(
@@ -362,10 +365,13 @@ $(document)
 														color : "red"
 													});
 										} else {
+											
+											if(jQuery.trim($(
+											"#line_type").val().length)!=0)
 											$(
 													"label[for='autreOperateurRadio']")
 													.css({
-														color : "green"
+														color : "black"
 													});
 										}
 
@@ -383,7 +389,7 @@ $(document)
 											});
 										} else {
 											$("label[for='raisonChoix']").css({
-												color : "green"
+												color : "black"
 											});
 										}
 										if (jQuery
@@ -394,7 +400,7 @@ $(document)
 											});
 										} else {
 											$("label[for='raisonAchat']").css({
-												color : "green"
+												color : "black"
 											});
 										}
 										if (jQuery
@@ -405,7 +411,7 @@ $(document)
 											});
 										} else {
 											$("label[for='gouvernorat']").css({
-												color : "green"
+												color : "black"
 											});
 										}
 
@@ -420,7 +426,7 @@ $(document)
 											} else {
 												$("label[for='lien_parente']")
 														.css({
-															color : "green"
+															color : "black"
 														});
 											}
 											if (jQuery
@@ -434,7 +440,7 @@ $(document)
 											} else {
 												$("label[for='nomUtilisateur']")
 														.css({
-															color : "green"
+															color : "black"
 														});
 											}
 											if (jQuery
@@ -451,7 +457,7 @@ $(document)
 												$(
 														"label[for='prenomUtilisateur']")
 														.css({
-															color : "green"
+															color : "black"
 														});
 											}
 											if (jQuery
@@ -468,7 +474,7 @@ $(document)
 												$(
 														"label[for='dateNaissanceUtilisateur']")
 														.css({
-															color : "green"
+															color : "black"
 														});
 											}
 											if (jQuery
@@ -485,7 +491,7 @@ $(document)
 												$(
 														"label[for='civiliteUtilisateur']")
 														.css({
-															color : "green"
+															color : "black"
 														});
 											}
 											console.log($("#situation_ligne")
@@ -504,7 +510,7 @@ $(document)
 												$(
 														"label[for='villeUtilisateur']")
 														.css({
-															color : "green"
+															color : "black"
 														});
 											}
 											if (jQuery.trim($(
@@ -520,7 +526,7 @@ $(document)
 												$(
 														"label[for='codePostalUtilisateur']")
 														.css({
-															color : "green"
+															color : "black"
 														});
 											}
 											if (jQuery.trim($(
@@ -536,7 +542,7 @@ $(document)
 												$(
 														"label[for='gouvernoratUtilisateur']")
 														.css({
-															color : "green"
+															color : "black"
 														});
 											}
 											if (jQuery
@@ -553,7 +559,7 @@ $(document)
 												$(
 														"label[for='niveauScolaireUtilisateur']")
 														.css({
-															color : "green"
+															color : "black"
 														});
 											}
 											if (jQuery.trim($(
@@ -569,7 +575,7 @@ $(document)
 												$(
 														"label[for='professionUtilisateur']")
 														.css({
-															color : "green"
+															color : "black"
 														});
 											}
 											if (jQuery
@@ -586,7 +592,7 @@ $(document)
 												$(
 														"label[for='etatCivilUtilisateur']")
 														.css({
-															color : "green"
+															color : "black"
 														});
 											}
 											if (jQuery
@@ -603,11 +609,66 @@ $(document)
 												$(
 														"label[for='revenuUtilisateur']")
 														.css({
-															color : "green"
+															color : "black"
+														});
+											}
+											if (jQuery
+													.trim($(
+															"#adresseUtilisateur")
+															.val()).length == 0) {
+												valid = false;
+												$(
+														"label[for='adresseUtilisateur']")
+														.css({
+															color : "red"
+														});
+											} else {
+												$(
+														"label[for='adresseUtilisateur']")
+														.css({
+															color : "black"
 														});
 											}
 										}
-
+										
+										if (jQuery
+												.trim($(
+														"#depenses")
+														.val()).length == 0) {
+											valid = false;
+											$(
+													"label[for='depenses']")
+													.css({
+														color : "red"
+													});
+										} else {
+											$(
+													"label[for='depenses']")
+													.css({
+														color : "black"
+													});
+										}
+										
+										if(($('#achatAccompagne').val()=="true")&&jQuery
+												.trim($(
+												'input[name=operateurAccompagnant]:radio:checked')
+												.val()).length == 0){
+											
+											
+											valid = false;
+											$(
+													"label[for='operateurRadio']")
+													.css({
+														color : "red"
+													});
+										} else {
+											$(
+													"label[for='operateurRadio']")
+													.css({
+														color : "black"
+													});
+										}
+									
 										if (!valid) {
 											$("#error").show();
 											return valid;
