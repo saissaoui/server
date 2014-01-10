@@ -400,11 +400,11 @@
 						<tr>
 							<td><label>Niveau scolaire*</label></td>
 							<td><div id="nivsco">
-									<input type="radio" id="primaire" name="niveauScolaire"><label
+									<input type="radio" value="primaire" id="primaire" name="niveauScolaire"><label
 										for="primaire">Primaire</label> <input type="radio"
-										id="secondaire" name="niveauScolaire" checked="checked"><label
+										id="secondaire" value="secondaire" name="niveauScolaire" checked="checked"><label
 										for="secondaire">Secondaire</label> <input type="radio"
-										id="superieur" name="niveauScolaire"><label
+										id="superieur" value="superieur" name="niveauScolaire"><label
 										for="superieur">Superieur</label>
 
 								</div></td>
@@ -433,11 +433,11 @@
 							<td><label>Etat civil*</label></td>
 							<td>
 								<div id="etatradio">
-									<input type="radio" id="celib" name="etatCivil" checked="checked"><label
-										for="celib">célibataire</label> <input type="radio" id="marie"
+									<input type="radio" id="celib" value="celib" name="etatCivil" checked="checked"><label
+										for="celib">célibataire</label> <input value="marie" type="radio" id="marie"
 										name="etatCivil"><label for="marie">Marié(e)</label> <input
 										type="radio" id="divorce" name="etatCivil"><label
-										for="divorce">Divorcé(e)</label> <input type="radio" id="veuf"
+										for="divorce">Divorcé(e)</label> <input value="veuf" type="radio" id="veuf"
 										name="etatCivil"><label for="veuf">Veuf(ve)</label>
 								</div>
 							</td>
@@ -508,9 +508,9 @@
 
 							<td>
 								<div id="situation_achat">
-									<input type="radio" id="presse" name="situationAchat" checked="checked"><label
+									<input type="radio" value="presse" id="presse" name="situationAchat" checked="checked"><label
 										for="presse">Quand vous êtes pressé</label> <input
-										type="radio" id="pas_presse" name="situationAchat"><label
+										type="radio" id="pas_presse" value="paspresse" name="situationAchat"><label
 										for="pas_presse">Quand vous n’êtes pas pressé</label>
 
 								</div>
@@ -522,8 +522,8 @@
 
 							<td>
 								<div id="mode_utilisation">
-									<input type="radio" id="local" name="modeUtilisation" checked="checked"><label
-										for="local">Local</label> <input type="radio" id="inter"
+									<input type="radio" id="local" value="local" name="modeUtilisation" checked="checked"><label
+										for="local">Local</label> <input value="inter" type="radio" id="inter"
 										name="modeUtilisation"><label for="inter">International</label>
 
 								</div>
@@ -605,9 +605,9 @@
 							<td>
 
 								<div id="civiliteUtilisateur">
-									<input type="radio" id="hommeAccomp" name="civiliteUtilisateur"><label
+									<input type="radio" value="homme" id="hommeAccomp" name="civiliteUtilisateur"><label
 										for="hommeAccomp">homme</label> <input type="radio"
-										id="femmeAccomp" name="civiliteUtilisateur" checked="checked"><label
+										id="femmeAccomp" value="femme" name="civiliteUtilisateur" checked="checked"><label
 										for="femmeAccomp">Femme</label>
 								</div>
 							</td>
@@ -660,12 +660,12 @@
 							<td><label for="niveauScolaireUtilisateur">Niveau
 									scolaire*</label></td>
 							<td><div id="niveauScolaireUtilisateur">
-									<input type="radio" id="primaireAccomp"
+									<input type="radio"  value="primaire" id="primaireAccomp"
 										name="niveauScolaireUtilisateur"><label
 										for="primaireAccomp">Primaire</label> <input type="radio"
-										id="secondaireAccomp" name="niveauScolaireUtilisateur"><label
+										id="secondaireAccomp" value="secondaire" name="niveauScolaireUtilisateur"><label
 										for="secondaireAccomp">Secondaire</label> <input type="radio"
-										id="superieurAccomp" name="niveauScolaireUtilisateur"><label
+										id="superieurAccomp" value="superieur" name="niveauScolaireUtilisateur"><label
 										for="superieurAccomp">Superieur</label>
 
 								</div></td>
@@ -694,13 +694,13 @@
 							<td><label for="etatCivilUtilisateur">Etat civil*</label></td>
 							<td>
 								<div id="etatCivilUtilisateur">
-									<input type="radio" id="celibAccomp"
+									<input value="celib" type="radio" id="celibAccomp"
 										name="etatCivilUtilisateur"><label for="celibAccomp">célibataire</label>
-									<input type="radio" id="marieAccomp"
+									<input value="marie" type="radio" id="marieAccomp"
 										name="etatCivilUtilisateur"><label for="marieAccomp">Marié(e)</label>
-									<input type="radio" id="divorceAccomp"
+									<input value="divorce" type="radio" id="divorceAccomp"
 										name="etatCivilUtilisateur"><label for="divorceAccomp">Divorcé(e)</label>
-									<input type="radio" id="veufAccomp" name="etatCivilUtilisateur"><label
+									<input value="veuf" type="radio" id="veufAccomp" name="etatCivilUtilisateur"><label
 										for="veufAccomp">Veuf(ve)</label>
 								</div>
 							</td>
@@ -750,12 +750,12 @@
 							<td><label for="operateurRadio">Opérateur téléphonique*</label></td>
 							<td>
 								<div id="operateurRadio">
-									<input type="radio" id="tun" name="operateurAccompagnant"><label
-										for="tun">Tunisiana</label> <input type="radio" id="orange"
+									<input value="Tunisiana" type="radio" id="tun" name="operateurAccompagnant"><label
+										for="tun">Tunisiana</label> <input value="Orange" type="radio" id="orange"
 										name="operateurAccompagnant"><label for="orange">Orange</label>
-									<input type="radio" id="tt" name="operateurAccompagnant"><label
+									<input type="radio" value="Tunisise Telecom" id="tt" name="operateurAccompagnant"><label
 										for="tt">Tunisie Télécom</label> <input type="radio"
-										id="ellissa" name="operateurAccompagnant"><label
+										id="ellissa" value="Ellissa" name="operateurAccompagnant"><label
 										for="ellissa">Ellissa</label>
 								</div>
 							</td>
